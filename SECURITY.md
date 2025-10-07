@@ -19,7 +19,6 @@ The Event Management System team takes security bugs seriously. We appreciate yo
 
 Instead, please report them via email to: **harsh@greenhacker.tech**
 
-If you prefer to encrypt your report, you can use our PGP key: **[INSERT PGP KEY IF AVAILABLE]**
 
 ### What to Include in Your Report
 
