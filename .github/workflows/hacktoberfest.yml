@@ -1,0 +1,224 @@
+name: Hacktoberfest CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  # Label Hacktoberfest PRs automatically
+  label-hacktoberfest:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add Hacktoberfest label
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-indexed
+            
+            // Only add label during October (month 10)
+            if (currentMonth === 10) {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: number,
+                labels: ['hacktoberfest-accepted']
+              });
+            }
+
+  # Code quality checks
+  code-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Check code formatting
+        run: npx prettier --check .
+        continue-on-error: true
+
+  # Run tests
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18, 20]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+        continue-on-error: true
+
+      - name: Upload coverage reports
+        if: matrix.node-version == '18'
+        uses: codecov/codecov-action@v3
+        continue-on-error: true
+
+  # Security audit
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run security audit
+        run: npm audit --audit-level high
+        continue-on-error: true
+
+  # Welcome new contributors
+  welcome:
+    if: github.event_name == 'pull_request' && github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome new contributors
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const author = context.payload.pull_request.user.login;
+            
+            // Check if this is the author's first contribution
+            const { data: pullRequests } = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: 'all',
+              creator: author
+            });
+            
+            if (pullRequests.length === 1) {
+              const welcomeMessage = `🎉 Welcome to the Event Management System, @${author}! 
+
+Thank you for your first contribution! We're excited to have you as part of our community.
+
+A few things to keep in mind:
+- 📋 Make sure your PR follows our [Contributing Guidelines](https://github.com/${owner}/${repo}/blob/main/CONTRIBUTING.md)
+- 🧪 Ensure all tests pass and add new tests if needed
+- 📚 Update documentation if your changes require it
+- 🎃 If this is for Hacktoberfest, make sure it's a meaningful contribution
+
+Our maintainers will review your PR soon. Feel free to ask questions if you need any help!
+
+Happy coding! 🚀`;
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: number,
+                body: welcomeMessage
+              });
+            }
+
+  # Check for spam/invalid contributions
+  spam-check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for spam indicators
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const pr = context.payload.pull_request;
+            
+            // Get PR diff
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner,
+              repo,
+              pull_number: number
+            });
+            
+            let spamIndicators = [];
+            
+            // Check for common spam patterns
+            for (const file of files) {
+              // Check for only whitespace changes
+              if (file.changes === file.additions + file.deletions && 
+                  file.additions < 5 && file.deletions < 5) {
+                spamIndicators.push('Minor whitespace-only changes');
+              }
+              
+              // Check for README-only changes with minimal content
+              if (file.filename === 'README.md' && file.changes < 10) {
+                spamIndicators.push('Minimal README changes');
+              }
+            }
+            
+            // Check PR title and description for spam patterns
+            const title = pr.title.toLowerCase();
+            const body = pr.body ? pr.body.toLowerCase() : '';
+            
+            const spamKeywords = ['update readme', 'fix typo', 'minor fix', 'small change'];
+            if (spamKeywords.some(keyword => title.includes(keyword)) && files.length === 1) {
+              spamIndicators.push('Potentially low-value change');
+            }
+            
+            if (spamIndicators.length > 0) {
+              const warningMessage = `⚠️ **Potential Spam/Invalid Contribution Detected**
+
+This PR has been flagged for the following reasons:
+${spamIndicators.map(indicator => `- ${indicator}`).join('\n')}
+
+**For Hacktoberfest contributors:** Please ensure your contribution adds meaningful value to the project. Low-quality PRs may be marked as \`invalid\` or \`spam\`.
+
+**What makes a good contribution:**
+- Bug fixes with proper testing
+- New features with documentation
+- Meaningful documentation improvements
+- Code refactoring with clear benefits
+
+If you believe this is a false positive, please explain the value your changes bring to the project.`;
+
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: number,
+                body: warningMessage
+              });
+              
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number: number,
+                labels: ['needs-review', 'potential-spam']
+              });
+            }
