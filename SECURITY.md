@@ -17,7 +17,7 @@ The Event Management System team takes security bugs seriously. We appreciate yo
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, please report them via email to: **[INSERT YOUR SECURITY EMAIL]**
+Instead, please report them via email to: **harsh@greenhacker.tech**
 
 If you prefer to encrypt your report, you can use our PGP key: **[INSERT PGP KEY IF AVAILABLE]**
 

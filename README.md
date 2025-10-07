@@ -279,8 +279,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Contact
 - **Maintainer**: [@GreenHacker420](https://github.com/GreenHacker420)
-- **Email**: [Insert your email]
-- **Twitter**: [Insert your Twitter handle]
+- **Email**: [harsh@greenhacker.tech](mailto:harsh@greenhacker.tech)
 
 ## 🙏 Acknowledgments
 
