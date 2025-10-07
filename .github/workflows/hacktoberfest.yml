@@ -124,18 +124,18 @@ jobs:
             
             if (pullRequests.length === 1) {
               const welcomeMessage = `🎉 Welcome to the Event Management System, @${author}! 
-
-Thank you for your first contribution! We're excited to have you as part of our community.
-
-A few things to keep in mind:
-- 📋 Make sure your PR follows our [Contributing Guidelines](https://github.com/${owner}/${repo}/blob/main/CONTRIBUTING.md)
-- 🧪 Ensure all tests pass and add new tests if needed
-- 📚 Update documentation if your changes require it
-- 🎃 If this is for Hacktoberfest, make sure it's a meaningful contribution
-
-Our maintainers will review your PR soon. Feel free to ask questions if you need any help!
-
-Happy coding! 🚀`;
+              
+              Thank you for your first contribution! We're excited to have you as part of our community.
+              
+              A few things to keep in mind:
+              - 📋 Make sure your PR follows our [Contributing Guidelines](https://github.com/${owner}/${repo}/blob/main/CONTRIBUTING.md)
+              - 🧪 Ensure all tests pass and add new tests if needed
+              - 📚 Update documentation if your changes require it
+              - 🎃 If this is for Hacktoberfest, make sure it's a meaningful contribution
+              
+              Our maintainers will review your PR soon. Feel free to ask questions if you need any help!
+              
+              Happy coding! 🚀`;
 
               await github.rest.issues.createComment({
                 owner,
@@ -194,19 +194,19 @@ Happy coding! 🚀`;
             
             if (spamIndicators.length > 0) {
               const warningMessage = `⚠️ **Potential Spam/Invalid Contribution Detected**
-
-This PR has been flagged for the following reasons:
-${spamIndicators.map(indicator => `- ${indicator}`).join('\n')}
-
-**For Hacktoberfest contributors:** Please ensure your contribution adds meaningful value to the project. Low-quality PRs may be marked as \`invalid\` or \`spam\`.
-
-**What makes a good contribution:**
-- Bug fixes with proper testing
-- New features with documentation
-- Meaningful documentation improvements
-- Code refactoring with clear benefits
-
-If you believe this is a false positive, please explain the value your changes bring to the project.`;
+              
+              This PR has been flagged for the following reasons:
+              ${spamIndicators.map(indicator => `- ${indicator}`).join('\\n')}
+              
+              **For Hacktoberfest contributors:** Please ensure your contribution adds meaningful value to the project. Low-quality PRs may be marked as \`invalid\` or \`spam\`.
+              
+              **What makes a good contribution:**
+              - Bug fixes with proper testing
+              - New features with documentation
+              - Meaningful documentation improvements
+              - Code refactoring with clear benefits
+              
+              If you believe this is a false positive, please explain the value your changes bring to the project.`;
 
               await github.rest.issues.createComment({
                 owner,
