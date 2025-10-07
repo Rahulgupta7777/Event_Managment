@@ -8,7 +8,7 @@ assignees: ''
 
 ## 🎃 Hacktoberfest Contribution
 
-Thank you for your interest in contributing to our Event Management System during Hacktoberfest 2024!
+Thank you for your interest in contributing to our Event Management System during Hacktoberfest 2025!
 
 ## 🎯 What would you like to work on?
 Please select the type of contribution you'd like to make:
@@ -49,7 +49,7 @@ When do you plan to complete this contribution?
 - [ ] Within 1-2 days
 - [ ] Within a week
 - [ ] Within 2 weeks
-- [ ] By the end of Hacktoberfest (October 31st)
+- [ ] By the end of Hacktoberfest (October 31st, 2025)
 
 ## 🤝 Support Needed
 Do you need any help or guidance?

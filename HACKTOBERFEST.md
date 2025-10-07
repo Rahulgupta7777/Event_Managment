@@ -1,6 +1,6 @@
-# 🎃 Hacktoberfest 2024 - Event Management System
+# 🎃 Hacktoberfest 2025 - Event Management System
 
-Welcome to our **Hacktoberfest 2024** participation! We're excited to have you contribute to our Event Management System.
+Welcome to our **Hacktoberfest 2025** participation! We're excited to have you contribute to our Event Management System.
 
 ## 🎯 What is Hacktoberfest?
 
@@ -232,8 +232,8 @@ By participating in Hacktoberfest through our repository:
 
 ## 📅 Important Dates
 
-- **October 1-31, 2024**: Hacktoberfest contribution period
-- **November 1-7, 2024**: Review period for final submissions
+- **October 1-31, 2025**: Hacktoberfest contribution period
+- **November 1-7, 2025**: Review period for final submissions
 - **Mid-November**: Digital rewards distributed
 
 ## 🌟 Success Stories
@@ -298,6 +298,6 @@ Help us measure our success:
 
 ### Thank you for making open source better! 🙏
 
-**Happy Hacktoberfest 2024!** 🎉
+**Happy Hacktoberfest 2025!** 🎉
 
 </div>

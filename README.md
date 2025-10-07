@@ -1,6 +1,6 @@
 # 🎉 Event Management System
 
-[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-2024-blueviolet.svg)](https://hacktoberfest.digitalocean.com/)
+[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet.svg)](https://hacktoberfest.digitalocean.com/)
 [![GitHub issues](https://img.shields.io/github/issues/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/issues)
 [![GitHub forks](https://img.shields.io/github/forks/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/network)
 [![GitHub stars](https://img.shields.io/github/stars/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/stargazers)
@@ -8,9 +8,9 @@
 
 A comprehensive, modern event management system built to help organize, manage, and track events efficiently. Perfect for event planners, organizations, and communities looking to streamline their event management process.
 
-## 🎃 Hacktoberfest 2024
+## 🎃 Hacktoberfest 2025
 
-**This repository is participating in Hacktoberfest 2024!** 
+**This repository is participating in Hacktoberfest 2025!** 
 
 We welcome contributions from developers of all skill levels. Whether you're a beginner looking to make your first open source contribution or an experienced developer wanting to add new features, there's something for everyone!
 
@@ -32,6 +32,7 @@ We welcome contributions from developers of all skill levels. Whether you're a b
 - [API Documentation](#-api-documentation)
 - [Contributing](#-contributing)
 - [Roadmap](#-roadmap)
+- [Project Status](#-project-status)
 - [License](#-license)
 - [Support](#-support)
 
@@ -82,8 +83,8 @@ We welcome contributions from developers of all skill levels. Whether you're a b
 ## 🚀 Installation
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
+- Node.js (v20 or higher, v22 LTS recommended)
+- npm (v8 or higher) or yarn
 - MongoDB / PostgreSQL
 - Git
 
@@ -242,6 +243,13 @@ We love contributions! This project is perfect for:
 - [ ] Third-party integrations
 - [ ] Enterprise features
 
+## 📊 Project Status
+
+For detailed information about the current development status, completed tasks, and upcoming milestones, see our [Project Status](PROJECT_STATUS.md) page.
+
+**Current Phase**: 🚧 Foundation & Setup (Hacktoberfest 2025)  
+**Next Milestone**: Authentication & Database (Target: October 25, 2025)
+
 ## 🏆 Contributors
 
 Thanks to all our amazing contributors! 🎉
@@ -289,6 +297,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **🍴 Fork it to start contributing!**
 
-**🎃 Happy Hacktoberfest 2024!**
+**🎃 Happy Hacktoberfest 2025!**
 
 </div>

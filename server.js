@@ -124,9 +124,9 @@ app.get('/', (req, res) => {
     <body>
         <div class="container">
             <h1>🎉 Event Management System</h1>
-            <div class="badge">🎃 Hacktoberfest 2024</div>
+            <div class="badge">🎃 Hacktoberfest 2025</div>
             <p>Welcome to our modern event management platform!</p>
-            <p>This project is participating in <strong>Hacktoberfest 2024</strong> and welcomes contributions from developers of all skill levels.</p>
+            <p>This project is participating in <strong>Hacktoberfest 2025</strong> and welcomes contributions from developers of all skill levels.</p>
             
             <div class="links">
                 <a href="/api" class="link">📚 API Documentation</a>

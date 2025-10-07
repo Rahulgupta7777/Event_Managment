@@ -6,8 +6,8 @@ This guide will help you set up the Event Management System for development.
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (v14 or higher) - [Download here](https://nodejs.org/)
-- **npm** (v6 or higher) - Usually comes with Node.js
+- **Node.js** (v20 or higher, v22 LTS recommended) - [Download here](https://nodejs.org/)
+- **npm** (v8 or higher) - Usually comes with Node.js
 - **Git** - [Download here](https://git-scm.com/)
 - **MongoDB** or **PostgreSQL** (choose one)
   - MongoDB: [Download here](https://www.mongodb.com/try/download/community)

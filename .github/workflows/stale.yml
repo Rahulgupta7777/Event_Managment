@@ -1,0 +1,68 @@
+name: Mark Stale Issues and PRs
+
+on:
+  schedule:
+    # Run daily at 1 AM UTC
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Mark stale issues and PRs
+        uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Issues configuration
+          stale-issue-message: |
+            👋 This issue has been automatically marked as stale because it has not had recent activity. 
+            
+            It will be closed if no further activity occurs within 7 days. If this issue is still relevant, please:
+            - Add a comment to keep it open
+            - Add the `keep-open` label
+            - Provide additional context or updates
+            
+            Thank you for your contributions! 🙏
+          
+          close-issue-message: |
+            🔒 This issue has been automatically closed due to inactivity. 
+            
+            If you believe this issue is still relevant, please feel free to reopen it with additional context or create a new issue referencing this one.
+            
+          # Pull requests configuration  
+          stale-pr-message: |
+            👋 This pull request has been automatically marked as stale because it has not had recent activity.
+            
+            It will be closed if no further activity occurs within 7 days. If this PR is still relevant, please:
+            - Rebase against the latest main branch
+            - Address any review comments
+            - Add a comment explaining the current status
+            
+            Thank you for your contribution! 🙏
+            
+          close-pr-message: |
+            🔒 This pull request has been automatically closed due to inactivity.
+            
+            If you'd like to continue working on this, please feel free to reopen it or create a new PR with the updated changes.
+            
+          # Timing configuration
+          days-before-stale: 30
+          days-before-close: 7
+          
+          # Labels
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          exempt-issue-labels: 'keep-open,pinned,security,critical'
+          exempt-pr-labels: 'keep-open,pinned,security,critical,work-in-progress'
+          
+          # Hacktoberfest specific - be more lenient during October
+          exempt-all-milestones: true
+          
+          # Only process a limited number to avoid rate limits
+          operations-per-run: 50

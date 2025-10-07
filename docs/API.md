@@ -119,7 +119,7 @@ Authorization: Bearer <token>
       "name": "John Doe",
       "email": "john@example.com",
       "role": "user",
-      "createdAt": "2024-01-01T00:00:00.000Z"
+      "createdAt": "2025-01-01T00:00:00.000Z"
     }
   }
 }
@@ -157,12 +157,12 @@ GET /api/events?page=1&limit=10&category=conference&search=tech
     "events": [
       {
         "id": "event_id",
-        "title": "Tech Conference 2024",
+        "title": "Tech Conference 2025",
         "description": "Annual technology conference",
         "category": "conference",
         "location": "San Francisco, CA",
-        "startDate": "2024-06-15T09:00:00.000Z",
-        "endDate": "2024-06-15T17:00:00.000Z",
+        "startDate": "2025-06-15T09:00:00.000Z",
+        "endDate": "2025-06-15T17:00:00.000Z",
         "capacity": 500,
         "registeredCount": 250,
         "price": 99.99,
@@ -170,7 +170,7 @@ GET /api/events?page=1&limit=10&category=conference&search=tech
           "id": "organizer_id",
           "name": "Tech Events Inc"
         },
-        "createdAt": "2024-01-01T00:00:00.000Z"
+        "createdAt": "2025-01-01T00:00:00.000Z"
       }
     ],
     "pagination": {
@@ -199,13 +199,13 @@ GET /api/events/:id
   "data": {
     "event": {
       "id": "event_id",
-      "title": "Tech Conference 2024",
+      "title": "Tech Conference 2025",
       "description": "Annual technology conference with industry leaders",
       "category": "conference",
       "location": "San Francisco, CA",
       "venue": "Moscone Center",
-      "startDate": "2024-06-15T09:00:00.000Z",
-      "endDate": "2024-06-15T17:00:00.000Z",
+      "startDate": "2025-06-15T09:00:00.000Z",
+      "endDate": "2025-06-15T17:00:00.000Z",
       "capacity": 500,
       "registeredCount": 250,
       "price": 99.99,
@@ -227,8 +227,8 @@ GET /api/events/:id
           "speaker": "Dr. Jane Smith"
         }
       ],
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-02T00:00:00.000Z"
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "updatedAt": "2025-01-02T00:00:00.000Z"
     }
   }
 }
@@ -251,13 +251,13 @@ Content-Type: application/json
 **Request Body:**
 ```json
 {
-  "title": "Tech Conference 2024",
+  "title": "Tech Conference 2025",
   "description": "Annual technology conference",
   "category": "conference",
   "location": "San Francisco, CA",
   "venue": "Moscone Center",
-  "startDate": "2024-06-15T09:00:00.000Z",
-  "endDate": "2024-06-15T17:00:00.000Z",
+  "startDate": "2025-06-15T09:00:00.000Z",
+  "endDate": "2025-06-15T17:00:00.000Z",
   "capacity": 500,
   "price": 99.99,
   "tags": ["technology", "networking"],
@@ -357,7 +357,7 @@ Authorization: Bearer <token>
       "eventId": "event_id",
       "userId": "user_id",
       "status": "confirmed",
-      "registeredAt": "2024-01-01T00:00:00.000Z"
+      "registeredAt": "2025-01-01T00:00:00.000Z"
     }
   }
 }
@@ -438,8 +438,8 @@ curl -X POST http://localhost:3000/api/events \
     "description": "Learn modern web development with React and Node.js",
     "category": "workshop",
     "location": "Online",
-    "startDate": "2024-07-20T14:00:00.000Z",
-    "endDate": "2024-07-20T18:00:00.000Z",
+    "startDate": "2025-07-20T14:00:00.000Z",
+    "endDate": "2025-07-20T18:00:00.000Z",
     "capacity": 50,
     "price": 29.99,
     "tags": ["web-development", "react", "nodejs"]

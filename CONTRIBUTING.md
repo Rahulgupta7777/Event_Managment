@@ -2,9 +2,9 @@
 
 Thank you for your interest in contributing to our Event Management System! We're excited to have you as part of our community during Hacktoberfest and beyond.
 
-## 🎃 Hacktoberfest 2024
+## 🎃 Hacktoberfest 2025
 
-This repository is participating in **Hacktoberfest 2024**! We welcome contributions from developers of all skill levels.
+This repository is participating in **Hacktoberfest 2025**! We welcome contributions from developers of all skill levels.
 
 ### What is Hacktoberfest?
 Hacktoberfest is a month-long celebration of open source software. Make 4 quality pull requests to participating repositories and earn a digital reward!
@@ -275,4 +275,4 @@ Thank you for contributing to our Event Management System! Your contributions he
 
 ---
 
-**Happy Coding and Happy Hacktoberfest! 🎃👨‍💻👩‍💻**
+**Happy Coding and Happy Hacktoberfest 2025! 🎃👨‍💻👩‍💻**
