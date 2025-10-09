@@ -9,6 +9,45 @@ This repository is participating in **Hacktoberfest 2025**! We welcome contribut
 ### What is Hacktoberfest?
 Hacktoberfest is a month-long celebration of open source software. Make 4 quality pull requests to participating repositories and earn a digital reward!
 
+### Hacktoberfest 2025 Requirements
+
+#### ✅ PR/MR Validation Criteria
+
+Your pull requests must meet ALL of the following criteria to count for Hacktoberfest:
+
+**[out-of-bounds]** Your PR must be within the bounds of Hacktoberfest:
+- Created between **October 1, 2025 (10:00 AM UTC)** and **October 31, 2025 (11:59 PM UTC)**
+- Made to a public, unarchived repository
+- ⚠️ PRs created before October 1 but merged or marked as ready after do NOT count
+
+**[spam]** Your PR must not be spammy:
+- PRs labeled with "spam" by maintainers will NOT count
+- We use the Node.js RegEx engine with `/\bspam\b/i` to detect spam labels
+- PRs with "hacktoberfest-accepted" label cannot be marked as spam via label
+- Merged PRs without "invalid" label cannot be marked as spam via label
+- ⚠️ Any user with 2+ spammy PRs will be disqualified from Hacktoberfest
+
+**[participating]** Your PR must be in a participating repository:
+- This repo has the "hacktoberfest" topic ✅
+- OR your PR must have the "hacktoberfest-accepted" label
+- This is a one-time check - once passed, we won't check again
+
+**[invalid]** Your PR must not be labeled as "invalid":
+- PRs with "invalid" label won't count
+- UNLESS they also have "hacktoberfest-accepted" label
+
+**[accepted]** Your PR must be accepted:
+- Must be **merged**, have "hacktoberfest-accepted" label, OR have an overall approving review
+- Must NOT be a draft to be considered accepted
+- If accepted via approving review, must NOT be closed
+- Must be accepted by October 31, 2025 (in any timezone, UTC-12 through UTC+14)
+
+**[7-day review period]** After passing all checks:
+- PR enters a 7-day review period
+- If it fails any check during this time, the timer resets
+- After 7 days, PR is automatically accepted for Hacktoberfest
+- PRs in review on October 31 can continue into November
+
 ### Hacktoberfest Guidelines
 - **Quality over Quantity**: Focus on meaningful contributions
 - **No Spam**: Low-quality PRs will be marked as `spam` or `invalid`
@@ -215,24 +254,67 @@ npm run build
 ### Valid Contributions
 - ✅ Bug fixes with proper testing
 - ✅ New features with documentation
-- ✅ Documentation improvements
+- ✅ Documentation improvements (meaningful, not trivial)
 - ✅ Code refactoring with clear benefits
 - ✅ UI/UX enhancements
 - ✅ Performance optimizations
+- ✅ Accessibility improvements
+- ✅ Security enhancements
+- ✅ Test coverage improvements
+- ✅ Low/Non-code contributions (technical writing, translations, UX testing, etc.)
 
-### Invalid Contributions
-- ❌ Minor text changes without value
+### Invalid Contributions (Will be marked as `invalid` or `spam`)
+- ❌ Minor text changes without value (e.g., fixing a single typo)
 - ❌ Whitespace or formatting-only changes
 - ❌ Duplicate PRs
 - ❌ PRs that break existing functionality
 - ❌ Auto-generated content without review
+- ❌ Adding your name to a contributors list without actual contribution
+- ❌ Automated PRs (e.g., dependency updates without testing)
+- ❌ PRs that don't follow contribution guidelines
 
 ### Hacktoberfest Labels
-We use these labels for Hacktoberfest:
-- `hacktoberfest`: General Hacktoberfest issues
-- `hacktoberfest-accepted`: Accepted contributions
-- `invalid`: Invalid contributions
-- `spam`: Spam contributions
+
+**Automatic Labels:**
+- `hacktoberfest`: Issues suitable for Hacktoberfest (applied to issues)
+- `hacktoberfest-accepted`: PR accepted for Hacktoberfest (auto-applied to qualifying PRs)
+
+**Maintainer Labels:**
+- `spam`: Spam PR - does NOT count for Hacktoberfest
+- `invalid`: Invalid PR - does NOT count unless also has `hacktoberfest-accepted`
+- `needs-review`: Awaiting maintainer review
+- `potential-spam`: Flagged for review by automated checks
+
+**Important Notes:**
+- PRs are automatically labeled `hacktoberfest-accepted` if created during October 2025
+- Maintainers can manually add `hacktoberfest-accepted` to override other labels
+- Spam label uses regex `/\bspam\b/i` - any label containing "spam" counts
+- Once a PR has `hacktoberfest-accepted`, it cannot be marked spam via labels alone
+
+### Low/Non-Code Contributions
+
+We welcome non-technical contributions! Examples include:
+- **Documentation**: Technical docs, tutorials, case studies
+- **Writing**: Blog posts, technical articles
+- **Translation**: Translating documentation or UI
+- **Design**: UI/UX designs, graphics, icons
+- **Testing**: User experience testing, bug reporting
+- **Community**: Event organization, social media content
+
+**Note:** Create a PR to track your contribution, even for non-code work.
+
+### For Maintainers
+
+**How to handle contributions:**
+- ✅ **Accept**: Merge, approve, or add `hacktoberfest-accepted` label
+- ❌ **Reject spam**: Add `spam` label
+- ⚠️ **Mark invalid**: Add `invalid` label (can be overridden with `hacktoberfest-accepted`)
+- 🔍 **Review needed**: Add `needs-review` label
+
+**Repository is opted-in:**
+- Repository has `hacktoberfest` topic ✅
+- Issues labeled with `hacktoberfest` for contributors
+- Automated workflows handle most labeling
 
 ## 🎯 Suggested First Contributions
 

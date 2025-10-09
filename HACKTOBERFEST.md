@@ -10,8 +10,46 @@ Hacktoberfest is a month-long celebration of open source software run by Digital
 
 1. **Register** for Hacktoberfest at [hacktoberfest.digitalocean.com](https://hacktoberfest.digitalocean.com/)
 2. **Find issues** labeled with `hacktoberfest` in our repository
-3. **Submit 4 quality pull requests** to participating repositories
-4. **Earn** your digital reward and plant a tree! 🌱
+3. **Submit 4 quality pull requests** to participating repositories between **October 1-31, 2025**
+4. **Wait for acceptance** - PRs must be merged, approved, or labeled `hacktoberfest-accepted`
+5. **Complete 7-day review period** for each PR
+6. **Earn** your digital reward! 🌱
+
+## ✅ Hacktoberfest 2025 PR Requirements
+
+Your pull requests must meet ALL of these criteria to count:
+
+### [out-of-bounds] Within Hacktoberfest Dates
+- ✅ Created between **October 1, 2025 (10:00 AM UTC)** and **October 31, 2025 (11:59 PM UTC)**
+- ✅ Made to a public, unarchived repository
+- ❌ PRs created before October 1 but merged after do NOT count
+
+### [spam] Not Marked as Spam
+- PRs labeled with any label containing "spam" (regex: `/\bspam\b/i`) will NOT count
+- PRs with `hacktoberfest-accepted` label cannot be marked spam via labels
+- Merged PRs without `invalid` label cannot be marked spam via labels
+- ⚠️ **2+ spammy PRs = disqualification from Hacktoberfest**
+
+### [participating] Repository is Participating
+- ✅ This repo has the `hacktoberfest` topic
+- OR your PR has the `hacktoberfest-accepted` label
+- This is a one-time check
+
+### [invalid] Not Marked as Invalid
+- PRs with `invalid` label won't count
+- UNLESS they also have `hacktoberfest-accepted` label
+
+### [accepted] PR is Accepted
+- Must be **merged**, have `hacktoberfest-accepted` label, OR have an overall approving review
+- Must NOT be a draft to count
+- If accepted via review, must NOT be closed
+- Must be accepted by October 31, 2025 (any timezone UTC-12 to UTC+14)
+
+### [7-day review] Review Period
+- After passing all checks, PR enters 7-day review period
+- If PR fails any check during this time, timer resets
+- After 7 days, PR is automatically accepted for Hacktoberfest
+- PRs in review on October 31 can continue into November
 
 ## 🎯 Our Hacktoberfest Goals
 
@@ -232,9 +270,12 @@ By participating in Hacktoberfest through our repository:
 
 ## 📅 Important Dates
 
-- **October 1-31, 2025**: Hacktoberfest contribution period
-- **November 1-7, 2025**: Review period for final submissions
-- **Mid-November**: Digital rewards distributed
+- **October 1, 2025 (10:00 AM UTC)**: Hacktoberfest starts - PRs created from this time count
+- **October 31, 2025 (11:59 PM UTC)**: Last day to create PRs
+- **October 31, 2025 (any timezone)**: Deadline for PR acceptance (merge/approve/label)
+- **7-day review period**: Each PR must pass checks and wait 7 days
+- **November**: PRs in review on Oct 31 can complete their 7-day period
+- **November**: Digital rewards distributed after review completion
 
 ## 🌟 Success Stories
 

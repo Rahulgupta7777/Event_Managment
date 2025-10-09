@@ -14,12 +14,30 @@ A comprehensive, modern event management system built to help organize, manage, 
 
 We welcome contributions from developers of all skill levels. Whether you're a beginner looking to make your first open source contribution or an experienced developer wanting to add new features, there's something for everyone!
 
+### ✅ Repository Setup for Hacktoberfest
+
+**Important:** This repository is opted-in for Hacktoberfest 2025. To ensure your PRs count:
+
+1. **Repository Topic**: This repo must have the `hacktoberfest` topic added
+   - Go to repository settings → Topics
+   - Add `hacktoberfest` as a topic
+   - This signals to Hacktoberfest that we're accepting contributions
+
+2. **Automated Labeling**: PRs created during October 2025 will automatically receive the `hacktoberfest-accepted` label
+
+3. **Quality Standards**: All PRs must meet our contribution guidelines to avoid being marked as `spam` or `invalid`
+
 ### Quick Start for Contributors
 1. ⭐ Star this repository
 2. 🍴 Fork the repository
-3. 📋 Check out our [Contributing Guidelines](CONTRIBUTING.md)
+3. 📋 Check out our [Contributing Guidelines](CONTRIBUTING.md) - **Read the Hacktoberfest 2025 requirements!**
 4. 🐛 Find an issue to work on or suggest a new feature
-5. 🚀 Submit your pull request
+5. 🚀 Submit your pull request (must be created Oct 1-31, 2025)
+
+### Important Dates
+- **Start**: October 1, 2025 at 10:00 AM UTC
+- **End**: October 31, 2025 at 11:59 PM UTC
+- **Review Period**: 7 days after PR passes all checks
 
 [**View Hacktoberfest Issues**](https://github.com/GreenHacker420/Event_Managment/labels/hacktoberfest) | [**Good First Issues**](https://github.com/GreenHacker420/Event_Managment/labels/good%20first%20issue)
 

@@ -7,26 +7,100 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  # Label Hacktoberfest PRs automatically
+  # Validate and label Hacktoberfest PRs automatically
   label-hacktoberfest:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
-      - name: Add Hacktoberfest label
+      - name: Validate and Add Hacktoberfest Label
         uses: actions/github-script@v7
         with:
           script: |
             const { owner, repo, number } = context.issue;
-            const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-indexed
+            const pr = context.payload.pull_request;
             
-            // Only add label during October (month 10)
-            if (currentMonth === 10) {
-              await github.rest.issues.addLabels({
-                owner,
-                repo,
-                issue_number: number,
-                labels: ['hacktoberfest-accepted']
-              });
+            // Hacktoberfest 2025 date range: October 1-31, 2025
+            const hacktoberfestStart = new Date('2025-10-01T10:00:00Z');
+            const hacktoberfestEnd = new Date('2025-10-31T23:59:59Z');
+            const prCreatedAt = new Date(pr.created_at);
+            const now = new Date();
+            
+            console.log(`PR created at: ${prCreatedAt}`);
+            console.log(`Hacktoberfest period: ${hacktoberfestStart} to ${hacktoberfestEnd}`);
+            
+            // Check if PR is within Hacktoberfest bounds
+            const isWithinBounds = prCreatedAt >= hacktoberfestStart && prCreatedAt <= hacktoberfestEnd;
+            
+            // Check if PR is a draft
+            const isDraft = pr.draft;
+            
+            // Get current labels
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner,
+              repo,
+              issue_number: number
+            });
+            
+            const labelNames = currentLabels.map(label => label.name);
+            const hasSpamLabel = labelNames.some(name => /\bspam\b/i.test(name));
+            const hasInvalidLabel = labelNames.includes('invalid');
+            const hasHacktoberfestAccepted = labelNames.includes('hacktoberfest-accepted');
+            
+            // Only process if within Hacktoberfest period and not a draft
+            if (isWithinBounds && !isDraft) {
+              // Don't add hacktoberfest-accepted if PR is marked as spam or invalid
+              if (!hasSpamLabel && !hasInvalidLabel && !hasHacktoberfestAccepted) {
+                try {
+                  await github.rest.issues.addLabels({
+                    owner,
+                    repo,
+                    issue_number: number,
+                    labels: ['hacktoberfest-accepted']
+                  });
+                  
+                  console.log('✅ Added hacktoberfest-accepted label');
+                  
+                  // Add informational comment
+                  await github.rest.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: number,
+                    body: '🎃 **Hacktoberfest 2025 - PR Accepted!**\n\n' +
+                          'This PR has been automatically labeled as `hacktoberfest-accepted` and will count toward your Hacktoberfest goal after:\n' +
+                          '- ✅ Passing all checks\n' +
+                          '- ✅ Completing the 7-day review period\n' +
+                          '- ✅ Being merged, approved, or keeping the `hacktoberfest-accepted` label\n\n' +
+                          '**Important Notes:**\n' +
+                          '- Draft PRs do not count until marked as ready for review\n' +
+                          '- PRs labeled as `spam` or `invalid` will not count\n' +
+                          '- The 7-day review period resets if the PR fails any checks\n\n' +
+                          'Thank you for contributing to open source! 🚀'
+                  });
+                } catch (error) {
+                  console.log('Note: Label may already exist or error occurred:', error.message);
+                }
+              }
+            } else if (isDraft) {
+              console.log('⚠️ PR is a draft - not adding hacktoberfest-accepted label');
+            } else if (!isWithinBounds) {
+              console.log('⚠️ PR is outside Hacktoberfest 2025 date range');
+              
+              if (now >= hacktoberfestStart && now <= hacktoberfestEnd) {
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: number,
+                  body: '⚠️ **Hacktoberfest 2025 Notice**\n\n' +
+                        'This PR was created before October 1, 2025, 10:00 AM UTC and will not count for Hacktoberfest 2025.\n\n' +
+                        '**To qualify for Hacktoberfest:**\n' +
+                        '- PRs must be created between October 1, 2025 (10:00 AM UTC) and October 31, 2025 (11:59 PM UTC)\n' +
+                        '- PRs created before October 1 but merged or marked as ready after do not count\n\n' +
+                        'Your contribution is still valuable! This is just an informational notice about Hacktoberfest eligibility.'
+                });
+              }
             }
 
   # Code quality checks
@@ -221,4 +295,91 @@ jobs:
                 issue_number: number,
                 labels: ['needs-review', 'potential-spam']
               });
+            }
+  
+  # Monitor label changes for Hacktoberfest compliance
+  label-monitor:
+    if: github.event_name == 'pull_request' && (github.event.action == 'labeled' || github.event.action == 'unlabeled')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Monitor Hacktoberfest Labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            const label = context.payload.label;
+            
+            if (!label) return;
+            
+            // Get current labels
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner,
+              repo,
+              issue_number: number
+            });
+            
+            const labelNames = currentLabels.map(l => l.name);
+            const hasSpamLabel = labelNames.some(name => /\bspam\b/i.test(name));
+            const hasInvalidLabel = labelNames.includes('invalid');
+            const hasHacktoberfestAccepted = labelNames.includes('hacktoberfest-accepted');
+            
+            // If spam or invalid label is added, remove hacktoberfest-accepted
+            // UNLESS hacktoberfest-accepted is also present (per Hacktoberfest rules)
+            if (github.event.action === 'labeled') {
+              if (/\bspam\b/i.test(label.name)) {
+                console.log('🚫 Spam label detected');
+                
+                // Remove hacktoberfest-accepted if present
+                if (hasHacktoberfestAccepted) {
+                  await github.rest.issues.removeLabel({
+                    owner,
+                    repo,
+                    issue_number: number,
+                    name: 'hacktoberfest-accepted'
+                  });
+                  
+                  await github.rest.issues.createComment({
+                    owner,
+                    repo,
+                    issue_number: number,
+                    body: '🚫 **Hacktoberfest Status: SPAM**\n\n' +
+                          'This PR has been labeled as spam and will NOT count toward Hacktoberfest.\n\n' +
+                          '**Spam PRs include:**\n' +
+                          '- PRs that are clearly automated or low-effort\n' +
+                          '- PRs that do not add meaningful value\n' +
+                          '- PRs that violate the Code of Conduct\n\n' +
+                          'If you believe this is a mistake, please contact the maintainers.'
+                  });
+                }
+              }
+              
+              if (label.name === 'invalid' && !hasHacktoberfestAccepted) {
+                console.log('⚠️ Invalid label detected');
+                
+                await github.rest.issues.createComment({
+                  owner,
+                  repo,
+                  issue_number: number,
+                  body: '⚠️ **Hacktoberfest Status: INVALID**\n\n' +
+                        'This PR has been labeled as invalid and will NOT count toward Hacktoberfest unless it also has the `hacktoberfest-accepted` label.\n\n' +
+                        '**Common reasons for invalid label:**\n' +
+                        '- PR does not follow contribution guidelines\n' +
+                        '- PR does not address the issue properly\n' +
+                        '- PR needs significant changes\n\n' +
+                        'Please address the feedback and request a review.'
+                });
+              }
+            }
+            
+            // If hacktoberfest-accepted is added, notify the contributor
+            if (github.event.action === 'labeled' && label.name === 'hacktoberfest-accepted') {
+              // Check if there are spam or invalid labels
+              if (hasSpamLabel) {
+                console.log('⚠️ Cannot accept PR marked as spam');
+              } else {
+                console.log('✅ PR manually accepted for Hacktoberfest');
+              }
             }
