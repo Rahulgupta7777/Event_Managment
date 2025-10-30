@@ -46,4 +46,4 @@ If you have suggestions on how to fix the bug, please describe them here.
 ## 📝 Checklist
 - [ ] I have searched existing issues to ensure this is not a duplicate
 - [ ] I have provided all the required information above
-- [ ] I am willing to work on this issue (for Hacktoberfest contributors)
+- [ ] I am willing to work on this issue

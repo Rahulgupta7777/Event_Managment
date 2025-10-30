@@ -1,23 +1,15 @@
-# GitHub Labels Configuration for Hacktoberfest 2025
+# GitHub Labels Configuration
 # This file defines all labels used in the repository
 # Labels are automatically synced using GitHub Actions or can be created manually
 
-# Hacktoberfest Labels (Required for Hacktoberfest 2025 compliance)
-- name: "hacktoberfest"
-  color: "FF6600"
-  description: "Issues suitable for Hacktoberfest contributions"
-
-- name: "hacktoberfest-accepted"
-  color: "2E7D32"
-  description: "PR accepted for Hacktoberfest - counts toward completion"
-
+# Quality Control Labels
 - name: "spam"
   color: "D32F2F"
-  description: "Spam PR - does not count for Hacktoberfest"
+  description: "Spam PR - will be rejected"
 
 - name: "invalid"
   color: "E65100"
-  description: "Invalid contribution - does not count for Hacktoberfest"
+  description: "Invalid contribution"
 
 # Difficulty Labels
 - name: "good first issue"

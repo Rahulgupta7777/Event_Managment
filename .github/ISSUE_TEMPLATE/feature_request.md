@@ -43,11 +43,6 @@ How important is this feature to you?
 - [ ] High - Important for my use case
 - [ ] Critical - Blocking my usage
 
-## 🎃 Hacktoberfest
-- [ ] I would like to work on this feature for Hacktoberfest
-- [ ] This is a good issue for first-time contributors
-- [ ] This requires advanced knowledge
-
 ## 📝 Additional Context
 Add any other context, screenshots, or examples about the feature request here.
 
@@ -55,4 +50,4 @@ Add any other context, screenshots, or examples about the feature request here.
 - [ ] I have searched existing issues to ensure this is not a duplicate
 - [ ] I have provided a clear description of the feature
 - [ ] I have explained the motivation behind this request
-- [ ] I am willing to work on this feature (for Hacktoberfest contributors)
+- [ ] I am willing to work on this feature

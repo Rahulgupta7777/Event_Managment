@@ -77,12 +77,6 @@ Please check all that apply:
 - [ ] I have considered accessibility in my implementation
 - [ ] I have handled error cases appropriately
 
-## 🎃 Hacktoberfest (if applicable)
-- [ ] This is a Hacktoberfest contribution
-- [ ] I have read and followed the Hacktoberfest guidelines
-- [ ] This is a meaningful contribution, not spam
-- [ ] I understand the project's goals and my changes align with them
-
 ## 🔄 Breaking Changes
 If this PR introduces breaking changes, please describe them and the migration path:
 
@@ -103,5 +97,5 @@ For Maintainers:
 - Verify the code follows project standards
 - Test the changes locally if needed
 - Provide constructive feedback
-- Add appropriate labels (hacktoberfest, bug, feature, etc.)
+- Add appropriate labels (bug, feature, etc.)
 -->

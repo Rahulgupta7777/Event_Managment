@@ -1,6 +1,6 @@
 {
   "name": "event-management-system",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A comprehensive, modern event management system built to help organize, manage, and track events efficiently.",
   "main": "server.js",
   "scripts": {
@@ -26,7 +26,6 @@
     "express",
     "mongodb",
     "react",
-    "hacktoberfest",
     "open-source"
   ],
   "author": "GreenHacker420 <your-email@example.com>",

@@ -44,17 +44,6 @@ Examples of unacceptable behavior include:
 * Creating multiple accounts to circumvent restrictions
 * Any form of discrimination or harassment
 
-## Hacktoberfest Specific Guidelines
-
-During Hacktoberfest, we expect all participants to:
-
-* Make meaningful contributions that add value to the project
-* Avoid submitting low-quality or spam pull requests
-* Be patient with maintainers who are reviewing contributions
-* Help other contributors by providing constructive feedback
-* Follow the contribution guidelines outlined in CONTRIBUTING.md
-* Respect the time and effort of maintainers and other contributors
-
 ## Enforcement Responsibilities
 
 Community leaders are responsible for clarifying and enforcing our standards of

@@ -1,45 +1,11 @@
 # 🎉 Event Management System
 
-[![Hacktoberfest](https://img.shields.io/badge/Hacktoberfest-2025-blueviolet.svg)](https://hacktoberfest.digitalocean.com/)
 [![GitHub issues](https://img.shields.io/github/issues/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/issues)
 [![GitHub forks](https://img.shields.io/github/forks/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/network)
 [![GitHub stars](https://img.shields.io/github/stars/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/stargazers)
 [![GitHub license](https://img.shields.io/github/license/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/blob/main/LICENSE)
 
 A comprehensive, modern event management system built to help organize, manage, and track events efficiently. Perfect for event planners, organizations, and communities looking to streamline their event management process.
-
-## 🎃 Hacktoberfest 2025
-
-**This repository is participating in Hacktoberfest 2025!** 
-
-We welcome contributions from developers of all skill levels. Whether you're a beginner looking to make your first open source contribution or an experienced developer wanting to add new features, there's something for everyone!
-
-### ✅ Repository Setup for Hacktoberfest
-
-**Important:** This repository is opted-in for Hacktoberfest 2025. To ensure your PRs count:
-
-1. **Repository Topic**: This repo must have the `hacktoberfest` topic added
-   - Go to repository settings → Topics
-   - Add `hacktoberfest` as a topic
-   - This signals to Hacktoberfest that we're accepting contributions
-
-2. **Automated Labeling**: PRs created during October 2025 will automatically receive the `hacktoberfest-accepted` label
-
-3. **Quality Standards**: All PRs must meet our contribution guidelines to avoid being marked as `spam` or `invalid`
-
-### Quick Start for Contributors
-1. ⭐ Star this repository
-2. 🍴 Fork the repository
-3. 📋 Check out our [Contributing Guidelines](CONTRIBUTING.md) - **Read the Hacktoberfest 2025 requirements!**
-4. 🐛 Find an issue to work on or suggest a new feature
-5. 🚀 Submit your pull request (must be created Oct 1-31, 2025)
-
-### Important Dates
-- **Start**: October 1, 2025 at 10:00 AM UTC
-- **End**: October 31, 2025 at 11:59 PM UTC
-- **Review Period**: 7 days after PR passes all checks
-
-[**View Hacktoberfest Issues**](https://github.com/GreenHacker420/Event_Managment/labels/hacktoberfest) | [**Good First Issues**](https://github.com/GreenHacker420/Event_Managment/labels/good%20first%20issue)
 
 ## 📋 Table of Contents
 
@@ -206,17 +172,16 @@ DELETE /api/users/:id      - Delete user
 
 ## 🤝 Contributing
 
-We love contributions! This project is perfect for:
-- 🆕 **First-time contributors**
+We welcome contributions! This project is perfect for:
 - 🎓 **Students learning web development**
-- 👨‍💻 **Experienced developers**
+- 👨‍💻 **Developers**
 - 🎨 **UI/UX designers**
 - 📝 **Technical writers**
 
 ### How to Contribute
 1. Read our [Contributing Guidelines](CONTRIBUTING.md)
 2. Check our [Code of Conduct](CODE_OF_CONDUCT.md)
-3. Look for issues labeled [`good first issue`](https://github.com/GreenHacker420/Event_Managment/labels/good%20first%20issue)
+3. Look for open issues or suggest new features
 4. Fork the repository and create your feature branch
 5. Make your changes and add tests
 6. Submit a pull request
@@ -265,8 +230,8 @@ We love contributions! This project is perfect for:
 
 For detailed information about the current development status, completed tasks, and upcoming milestones, see our [Project Status](PROJECT_STATUS.md) page.
 
-**Current Phase**: 🚧 Foundation & Setup (Hacktoberfest 2025)  
-**Next Milestone**: Authentication & Database (Target: October 25, 2025)
+**Current Phase**: 🚧 Foundation & Setup  
+**Next Milestone**: Authentication & Database
 
 ## 🏆 Contributors
 
@@ -299,10 +264,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Maintainer**: [@GreenHacker420](https://github.com/GreenHacker420)
 - **Email**: [harsh@greenhacker.tech](mailto:harsh@greenhacker.tech)
 
+- **Maintainer**: [@curiouscoder_cmd](https://github.com/curiouscoder_cmd)
+- **Email**: [nitya@curiouscoder.live](mailto:nitya@curiouscoder.live)
+
+- **Maintainer**: [@Rahulgupta7777](https://github.com/Rahulgupta7777)
+- **Email**: [rahulgupta193246@gmail.com](mailto:rahulgupta193246@gmail.com)
+
 ## 🙏 Acknowledgments
 
 - Thanks to all contributors who help make this project better
-- Special thanks to the Hacktoberfest community
 - Inspired by modern event management solutions
 - Built with ❤️ for the open source community
 
@@ -313,7 +283,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **⭐ Star this repository if you find it helpful!**
 
 **🍴 Fork it to start contributing!**
-
-**🎃 Happy Hacktoberfest 2025!**
 
 </div>

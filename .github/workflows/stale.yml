@@ -61,7 +61,6 @@ jobs:
           exempt-issue-labels: 'keep-open,pinned,security,critical'
           exempt-pr-labels: 'keep-open,pinned,security,critical,work-in-progress'
           
-          # Hacktoberfest specific - be more lenient during October
           exempt-all-milestones: true
           
           # Only process a limited number to avoid rate limits
