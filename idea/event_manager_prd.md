@@ -189,6 +189,25 @@ Event Manager is a full-stack collaborative platform that enables organizers to 
 
 **Purpose:** Provide insights and overview of event progress
 
+### 4.8 Super User Dashboard
+
+**Purpose**: Manage the entire platform
+
+Features:
+
+Global visibility into all events and organizers
+
+Manage organizer accounts and system roles
+
+Configure integrations (calendar, payment, communication APIs)
+
+Monitor analytics, logs, and system health
+
+Perform backups, recovery, and compliance checks
+
+Override permissions for troubleshooting
+
+
 **Features:**
 - **Progress Tracking**
   - Overall event progress percentage
@@ -212,6 +231,15 @@ Event Manager is a full-stack collaborative platform that enables organizers to 
 
 ## 5. User Roles & Permissions
 
+### 5.1 Super User
+
+- Platform-level access and management
+- Add, remove, and modify organizer accounts
+- Control role hierarchies and permissions globally
+- Access all analytics and activity logs
+- Configure platform-wide integrations and settings
+
+Handle backups and system compliance
 ### 5.1 Admin/Organizer
 - Full access to all features
 - Create and manage events
