@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import prisma from '../../db/db.js';
+import emailService from '../../emailTemplate/auth.js';
 
 export default async function authRoutes(app, option) {
     // register a new user
@@ -20,6 +21,11 @@ export default async function authRoutes(app, option) {
                 name,
                 role: role || 'MEMBER'
             }
+        });
+
+        // send the mail
+        emailService.sendWelcome(user).catch(err => {
+            app.log.error('Failed to send welcome email:', err);
         });
 
         const token = app.jwt.sign({ id: user.id, role: user.role });

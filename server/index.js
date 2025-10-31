@@ -4,8 +4,9 @@ import helmet from '@fastify/helmet';
 import jwt from '@fastify/jwt';
 import rateLimit from '@fastify/rate-limit';
 import cookie from '@fastify/cookie';
-import prisma from './db/db';
+import prisma from './db/db.js';
 import authRoutes from './routes/auth/auth.js';
+import testEmailRoutes from './routes/test/email.js';
 
 const app = Fastify({
   logger: true
@@ -27,7 +28,9 @@ app.decorate('authenticate', async (request, reply) => {
   }
 });
 
+// Register routes
 app.register(authRoutes, { prefix: '/auth' });
+app.register(testEmailRoutes, { prefix: '/api' });
 
 app.get('/', function (req, res) {
   res.send({ hello: 'world' });
