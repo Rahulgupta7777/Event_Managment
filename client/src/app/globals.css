@@ -2,25 +2,53 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
 }
 
+/* Light, soft peach gradient background with ambient glow */
+/* Soft Peachy Delight: #FAE1DD → #FFD7BA → #FEC5BB */
+/* Muted pastel layers for depth: #FCD5CE, #E8E8E4, #D8E2DC */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0b0b0b;
+    --foreground: #e6e6e6;
   }
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  /* Soft gradient background with subtle glow */
+  background: linear-gradient(160deg, #FAE1DD 0%, #FFD7BA 50%, #FEC5BB 100%);
+  position: relative;
+}
+
+/* Ambient glow layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20% -20% -20% -20%;
+  background: radial-gradient(60% 60% at 20% 10%, rgba(252, 213, 206, 0.35), transparent 60%),
+    radial-gradient(50% 50% at 80% 20%, rgba(232, 232, 228, 0.25), transparent 65%),
+    radial-gradient(70% 70% at 50% 90%, rgba(216, 226, 220, 0.25), transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Provide a base stacking context for glass cards */
+#__next, body > div, main {
+  position: relative;
+  z-index: 1;
 }
