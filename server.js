@@ -124,9 +124,9 @@ app.get('/', (req, res) => {
     <body>
         <div class="container">
             <h1>🎉 Event Management System</h1>
-            <div class="badge">🎃 Hacktoberfest 2025</div>
+            <div class="badge">Group Project - v0.0.1</div>
             <p>Welcome to our modern event management platform!</p>
-            <p>This project is participating in <strong>Hacktoberfest 2025</strong> and welcomes contributions from developers of all skill levels.</p>
+            <p>A comprehensive system for organizing, managing, and tracking events efficiently.</p>
             
             <div class="links">
                 <a href="/api" class="link">📚 API Documentation</a>
@@ -136,8 +136,7 @@ app.get('/', (req, res) => {
             </div>
             
             <p style="margin-top: 2rem; opacity: 0.8;">
-                Ready to contribute? Check out our 
-                <a href="https://github.com/GreenHacker420/Event_Managment/labels/good%20first%20issue" style="color: #ffd93d;">good first issues</a>!
+                Built with Node.js, Express, and MongoDB
             </p>
         </div>
     </body>

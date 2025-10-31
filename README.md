@@ -7,6 +7,16 @@
 
 A comprehensive, modern event management system built to help organize, manage, and track events efficiently. Perfect for event planners, organizations, and communities looking to streamline their event management process.
 
+> **📌 Group Project - 1st Evaluation Submission**  
+> This repository contains our Event Management System developed as a group project. See [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md) for evaluation requirements.
+
+## 📑 Project Documentation
+
+- **[Ideation Document](idea/event_manager_prd.md)** - Complete product requirements and problem statement
+- **[ER Diagram](ER_DIAGRAM.md)** - Database schema and entity relationships
+- **[API Documentation](docs/API.md)** - API endpoints and usage
+- **[Setup Guide](docs/SETUP.md)** - Detailed setup instructions
+
 ## 📋 Table of Contents
 
 - [Features](#-features)
@@ -64,53 +74,109 @@ A comprehensive, modern event management system built to help organize, manage, 
 - **Documentation**: JSDoc
 - **Code Quality**: ESLint, Prettier
 
-## 🚀 Installation
+## 🚀 Quick Start Guide
 
 ### Prerequisites
-- Node.js (v20 or higher, v22 LTS recommended)
-- npm (v8 or higher) or yarn
-- MongoDB / PostgreSQL
-- Git
+Before you begin, ensure you have the following installed:
+- **Node.js** v20 or higher (v22 LTS recommended) - [Download here](https://nodejs.org/)
+- **npm** v8 or higher (comes with Node.js) or **yarn**
+- **MongoDB** (for database) - [Download here](https://www.mongodb.com/try/download/community) or use MongoDB Atlas (cloud)
+- **Git** - [Download here](https://git-scm.com/)
 
-### Local Development Setup
+### Step-by-Step Setup Instructions
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/GreenHacker420/Event_Managment.git
-   cd Event_Managment
-   ```
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/GreenHacker420/Event_Managment.git
+cd Event_Managment
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+#### 2. Install Dependencies
+```bash
+npm install
+```
+This will install all required packages listed in `package.json`.
 
-3. **Environment Setup**
-   ```bash
-   cp .env.example .env
-   # Edit .env with your configuration
-   ```
+#### 3. Environment Configuration
+Create a `.env` file in the root directory:
+```bash
+cp .env.example .env
+```
 
-4. **Database Setup**
-   ```bash
-   # For MongoDB
-   npm run db:setup
-   
-   # For PostgreSQL
-   npm run db:migrate
-   ```
+Then edit `.env` with your configuration:
+```env
+# Server Configuration
+PORT=3000
+NODE_ENV=development
 
-5. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+# Database Configuration
+MONGODB_URI=mongodb://localhost:27017/event_management
+# OR for MongoDB Atlas:
+# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/event_management
 
-6. **Open your browser**
-   Navigate to `http://localhost:3000`
+# JWT Secret (change this to a random string)
+JWT_SECRET=your_super_secret_jwt_key_change_this
+
+# Email Configuration (optional for now)
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASSWORD=your-app-password
+```
+
+#### 4. Start MongoDB
+If using local MongoDB:
+```bash
+# On macOS (with Homebrew)
+brew services start mongodb-community
+
+# On Windows
+# MongoDB should start automatically as a service
+
+# On Linux
+sudo systemctl start mongod
+```
+
+If using MongoDB Atlas, skip this step and use your Atlas connection string in `.env`.
+
+#### 5. Start the Development Server
+```bash
+npm run dev
+```
+
+The server will start on `http://localhost:3000` (or the PORT specified in your `.env` file).
+
+#### 6. Verify Installation
+Open your browser and navigate to:
+```
+http://localhost:3000
+```
+
+You should see the Event Management System welcome page with a health check status.
+
+### Testing the API
+You can test the API using curl or Postman:
+```bash
+# Health check
+curl http://localhost:3000/health
+
+# Expected response:
+# {"status":"ok","timestamp":"2025-10-31T...","uptime":...}
+```
+
+### Troubleshooting
+
+**Issue: MongoDB connection error**
+- Ensure MongoDB is running: `mongosh` (should connect without errors)
+- Check your `MONGODB_URI` in `.env` file
+- For Atlas, ensure your IP is whitelisted
+
+**Issue: Port already in use**
+- Change the `PORT` in your `.env` file to another port (e.g., 3001)
+
+**Issue: Module not found errors**
+- Delete `node_modules` folder and `package-lock.json`
+- Run `npm install` again
 
 ### Docker Setup (Alternative)
 
