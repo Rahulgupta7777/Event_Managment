@@ -1,19 +1,24 @@
-# 🎉 Event Management System
+# Event Management System
 
 [![GitHub issues](https://img.shields.io/github/issues/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/issues)
 [![GitHub forks](https://img.shields.io/github/forks/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/network)
 [![GitHub stars](https://img.shields.io/github/stars/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/stargazers)
 [![GitHub license](https://img.shields.io/github/license/GreenHacker420/Event_Managment)](https://github.com/GreenHacker420/Event_Managment/blob/main/LICENSE)
 
-A comprehensive, modern event management system built to help organize, manage, and track events efficiently. Perfect for event planners, organizations, and communities looking to streamline their event management process.
+A comprehensive, modern event management system built to help organize, manage, and track events efficiently. This collaborative platform enables event organizers to coordinate teams, manage tasks, track budgets, and communicate effectively throughout the event lifecycle.
 
-> **📌 Group Project - 1st Evaluation Submission**  
-> This repository contains our Event Management System developed as a group project. See [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md) for evaluation requirements.
+**🎯 Key Highlights:**
+- Full-stack application with Next.js 16 (React 19) and Fastify
+- Comprehensive database schema supporting complex event workflows
+- JWT-based authentication with role-based access control
+- Production-ready security with Helmet, CORS, and rate limiting
+- Email notifications with customizable templates
+- Monorepo structure for scalable development
 
 ## 📑 Project Documentation
 
 - **[Ideation Document](idea/event_manager_prd.md)** - Complete product requirements and problem statement
-- **[ER Diagram](ER_DIAGRAM.md)** - Database schema and entity relationships
+- **[ER Diagram](er/er_diagram.svg )** - Database schema and entity relationships
 - **[API Documentation](docs/API.md)** - API endpoints and usage
 - **[Setup Guide](docs/SETUP.md)** - Detailed setup instructions
 
@@ -32,56 +37,72 @@ A comprehensive, modern event management system built to help organize, manage, 
 
 ## ✨ Features
 
-### Current Features
-- 📅 **Event Creation & Management**: Create, edit, and delete events with detailed information
-- 👥 **User Management**: User registration, authentication, and profile management
-- 🎫 **Event Registration**: Allow users to register for events with capacity management
-- 📧 **Notifications**: Email notifications for event updates and reminders
-- 🔍 **Search & Filter**: Advanced search and filtering options for events
-- 📱 **Responsive Design**: Mobile-friendly interface for all devices
+### Current Features (Implemented)
+- ✅ **User Authentication**: JWT-based authentication with registration and login
+- ✅ **Event CRUD Operations**: Create, read, update, and delete events
+- ✅ **Role-Based Access Control**: Admin, Organizer, and Member roles
+- ✅ **Database Schema**: Complete Prisma schema with all entities
+  - Users, Events, Channels, Subgroups, Tasks, Messages, Budget, Expenses, Documents
+- ✅ **Email Service**: Welcome emails with EJS templates
+- ✅ **Security**: Helmet, CORS, rate limiting, and cookie support
+- ✅ **API Protection**: JWT authentication for protected routes
+- ✅ **Next.js Frontend**: Modern React 19 with Tailwind CSS setup
 
 ### Planned Features (Great for Contributors!)
-- 🗓️ **Calendar Integration**: Sync with Google Calendar, Outlook, etc.
-- 💳 **Payment Integration**: Stripe/PayPal integration for paid events
-- 📊 **Analytics Dashboard**: Event statistics and attendee analytics
-- 🎨 **Custom Themes**: Customizable event pages and themes
-- 🔔 **Real-time Notifications**: WebSocket-based real-time updates
-- 📍 **Location Services**: Map integration and location-based features
-- 🎥 **Virtual Events**: Support for online/hybrid events
-- 📝 **Event Templates**: Pre-built templates for common event types
-- 🏷️ **Tagging System**: Categorize events with tags and categories
-- 📈 **Reporting**: Generate detailed reports and export data
+- 🎨 **Frontend UI Development**: Build event listing, detail pages, and dashboards
+- 📋 **Channel Management**: Implement channel and subgroup CRUD operations
+- ✅ **Task Management**: Build Kanban board and task assignment features
+- 💬 **Real-time Chat**: Implement channel-based messaging with Socket.io
+- 💰 **Budget Tracking**: Create budget management and expense approval UI
+- 📄 **Document Management**: File upload, storage, and sharing features
+- 🔔 **Notification System**: Real-time and email notifications
+- 📊 **Analytics Dashboard**: Event statistics and progress tracking
+- 🗓️ **Calendar Integration**: Sync with Google Calendar, Outlook
+- 🎥 **Video Conferencing**: Integrate WebRTC or third-party video APIs
+- 📍 **Location Services**: Map integration for event venues
+- 🏷️ **Tagging & Search**: Advanced filtering and categorization
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Framework**: React.js / Vue.js / Angular (To be implemented)
-- **Styling**: CSS3, Bootstrap / Tailwind CSS
-- **State Management**: Redux / Vuex / NgRx
-- **Build Tool**: Webpack / Vite
+- **Framework**: Next.js 16.0.1 (React 19.2.0)
+- **Styling**: Tailwind CSS v4
+- **Build Tool**: Next.js built-in compiler with React Compiler
 
 ### Backend
 - **Runtime**: Node.js
-- **Framework**: Express.js / Fastify
-- **Database**: MongoDB / PostgreSQL
-- **Authentication**: JWT / OAuth 2.0
-- **File Storage**: AWS S3 / Cloudinary
+- **Framework**: Fastify 5.6.1
+- **Database**: MySQL with Prisma ORM 6.18.0
+- **Authentication**: JWT (@fastify/jwt)
+- **Security**: Helmet, CORS, Rate Limiting, Cookie support
+- **Email**: Nodemailer with EJS templates
 
 ### DevOps & Tools
 - **Version Control**: Git & GitHub
-- **CI/CD**: GitHub Actions
-- **Testing**: Jest, Cypress
-- **Documentation**: JSDoc
-- **Code Quality**: ESLint, Prettier
+- **Development**: Nodemon for hot reload
+- **Code Quality**: ESLint
+- **Database Migrations**: Prisma CLI
+
+### Key Dependencies
+
+**Backend:**
+- `fastify` (5.6.1) - Fast and low overhead web framework
+- `@prisma/client` (6.18.0) - Type-safe database client
+- `@fastify/jwt` (10.0.0) - JWT authentication
+- `@fastify/helmet` (13.0.2) - Security headers
+- `@fastify/cors` (11.1.0) - CORS support
+- `@fastify/rate-limit` (10.3.0) - Rate limiting
+- `bcrypt` (6.0.0) - Password hashing
+- `nodemailer` (7.0.10) - Email sending
+- `ejs` (3.1.10) - Email templating
+
+**Frontend:**
+- `next` (16.0.1) - React framework
+- `react` (19.2.0) - UI library
+- `tailwindcss` (4.x) - Utility-first CSS
+- `babel-plugin-react-compiler` (1.0.0) - React optimization
 
 ## 🚀 Quick Start Guide
-
-### Prerequisites
-Before you begin, ensure you have the following installed:
-- **Node.js** v20 or higher (v22 LTS recommended) - [Download here](https://nodejs.org/)
-- **npm** v8 or higher (comes with Node.js) or **yarn**
-- **MongoDB** (for database) - [Download here](https://www.mongodb.com/try/download/community) or use MongoDB Atlas (cloud)
-- **Git** - [Download here](https://git-scm.com/)
 
 ### Step-by-Step Setup Instructions
 
@@ -92,102 +113,148 @@ cd Event_Managment
 ```
 
 #### 2. Install Dependencies
+
+The project has a monorepo structure with separate client and server directories.
+
+**Install Server Dependencies:**
 ```bash
+cd server
 npm install
 ```
-This will install all required packages listed in `package.json`.
+
+**Install Client Dependencies:**
+```bash
+cd ../client
+npm install
+```
 
 #### 3. Environment Configuration
-Create a `.env` file in the root directory:
+
+Create a `.env` file in the `server` directory:
 ```bash
+cd server
 cp .env.example .env
 ```
 
-Then edit `.env` with your configuration:
+Then edit `server/.env` with your configuration:
 ```env
-# Server Configuration
-PORT=3000
-NODE_ENV=development
-
-# Database Configuration
-MONGODB_URI=mongodb://localhost:27017/event_management
-# OR for MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/event_management
+# Database Configuration (MySQL)
+DATABASE_URL=mysql://user:password@localhost:3306/event_db
 
 # JWT Secret (change this to a random string)
 JWT_SECRET=your_super_secret_jwt_key_change_this
 
-# Email Configuration (optional for now)
+# Cookie Secret
+COOKIE_SECRET=your_cookie_secret_change_this
+
+# Server Port
+PORT=3300
+
+# Email Configuration (for Nodemailer)
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASSWORD=your-app-password
+EMAIL_FROM=noreply@yourdomain.com
 ```
 
-#### 4. Start MongoDB
-If using local MongoDB:
+#### 4. Setup MySQL Database
+
+Ensure you have MySQL installed and running:
+
 ```bash
 # On macOS (with Homebrew)
-brew services start mongodb-community
+brew services start mysql
 
 # On Windows
-# MongoDB should start automatically as a service
+# MySQL should start automatically as a service
 
 # On Linux
-sudo systemctl start mongod
+sudo systemctl start mysql
 ```
 
-If using MongoDB Atlas, skip this step and use your Atlas connection string in `.env`.
-
-#### 5. Start the Development Server
+Create the database:
 ```bash
+mysql -u root -p
+CREATE DATABASE event_db;
+EXIT;
+```
+
+#### 5. Run Database Migrations
+
+Generate Prisma Client and run migrations:
+```bash
+cd server
+npx prisma generate
+npx prisma db push
+```
+
+#### 6. Start the Development Servers
+
+**Start Backend Server:**
+```bash
+cd server
 npm run dev
 ```
+The server will start on `http://localhost:3300` (or the PORT specified in your `.env` file).
 
-The server will start on `http://localhost:3000` (or the PORT specified in your `.env` file).
+**Start Frontend (in a new terminal):**
+```bash
+cd client
+npm run dev
+```
+The client will start on `http://localhost:3000`.
 
-#### 6. Verify Installation
+#### 7. Verify Installation
+
 Open your browser and navigate to:
-```
-http://localhost:3000
-```
-
-You should see the Event Management System welcome page with a health check status.
+- **Frontend**: `http://localhost:3000`
+- **Backend API**: `http://localhost:3300`
 
 ### Testing the API
-You can test the API using curl or Postman:
-```bash
-# Health check
-curl http://localhost:3000/health
 
-# Expected response:
-# {"status":"ok","timestamp":"2025-10-31T...","uptime":...}
+You can test the API using curl or Postman:
+
+```bash
+# Test root endpoint
+curl http://localhost:3300/
+
+# Register a new user
+curl -X POST http://localhost:3300/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"password123","name":"Test User","role":"ORGANIZER"}'
+
+# Login
+curl -X POST http://localhost:3300/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","password":"password123"}'
+
+# Get all events
+curl http://localhost:3300/api/events
 ```
 
 ### Troubleshooting
 
-**Issue: MongoDB connection error**
-- Ensure MongoDB is running: `mongosh` (should connect without errors)
-- Check your `MONGODB_URI` in `.env` file
-- For Atlas, ensure your IP is whitelisted
+**Issue: MySQL connection error**
+- Ensure MySQL is running: `mysql -u root -p` (should connect without errors)
+- Check your `DATABASE_URL` in `server/.env` file
+- Verify the database exists: `SHOW DATABASES;`
 
 **Issue: Port already in use**
-- Change the `PORT` in your `.env` file to another port (e.g., 3001)
+- Change the `PORT` in your `server/.env` file to another port (e.g., 3301)
+- For the client, Next.js uses port 3000 by default
+
+**Issue: Prisma Client errors**
+- Run `npx prisma generate` in the server directory
+- Run `npx prisma db push` to sync your schema
 
 **Issue: Module not found errors**
-- Delete `node_modules` folder and `package-lock.json`
-- Run `npm install` again
+- Delete `node_modules` folder and `package-lock.json` in both client and server
+- Run `npm install` again in both directories
 
-### Docker Setup (Alternative)
+### Docker Setup (Coming Soon)
 
-```bash
-# Clone the repository
-git clone https://github.com/GreenHacker420/Event_Managment.git
-cd Event_Managment
-
-# Run with Docker Compose
-docker-compose up -d
-```
+Docker support is planned for easier deployment and development setup.
 
 ## 📖 Usage
 
@@ -207,32 +274,73 @@ docker-compose up -d
 
 ## 📚 API Documentation
 
+### Base URL
+- **Backend API**: `http://localhost:3300`
+
 ### Authentication Endpoints
 ```
-POST /api/auth/register    - User registration
-POST /api/auth/login       - User login
-POST /api/auth/logout      - User logout
-GET  /api/auth/profile     - Get user profile
-PUT  /api/auth/profile     - Update user profile
+POST   /auth/register      - Register a new user
+POST   /auth/login         - User login
+GET    /auth/me            - Get current user profile (protected)
+```
+
+**Register Example:**
+```json
+POST /auth/register
+{
+  "email": "user@example.com",
+  "password": "securepassword",
+  "name": "John Doe",
+  "role": "ORGANIZER" // Optional: ADMIN, ORGANIZER, MEMBER
+}
+```
+
+**Login Example:**
+```json
+POST /auth/login
+{
+  "email": "user@example.com",
+  "password": "securepassword"
+}
 ```
 
 ### Event Endpoints
 ```
-GET    /api/events         - Get all events
-GET    /api/events/:id     - Get specific event
-POST   /api/events         - Create new event
-PUT    /api/events/:id     - Update event
-DELETE /api/events/:id     - Delete event
-POST   /api/events/:id/register - Register for event
+GET    /api/events         - Get all events (public)
+GET    /api/events/:id     - Get specific event with details
+POST   /api/events         - Create new event (protected)
+PUT    /api/events/:id     - Update event (protected - organizer only)
+DELETE /api/events/:id     - Delete event (protected - organizer only)
+GET    /api/my-events      - Get current user's events (protected)
 ```
 
-### User Management
+**Create Event Example:**
+```json
+POST /api/events
+Headers: { "Authorization": "Bearer <token>" }
+{
+  "name": "Tech Conference 2025",
+  "type": "Conference",
+  "eventDate": "2025-12-15T10:00:00Z",
+  "venue": "Convention Center",
+  "status": "SCHEDULED" // Optional: DRAFT, SCHEDULED, CANCELLED, COMPLETED
+}
 ```
-GET    /api/users          - Get all users (admin)
-GET    /api/users/:id      - Get specific user
-PUT    /api/users/:id      - Update user
-DELETE /api/users/:id      - Delete user
-```
+
+### Database Schema
+
+The system uses Prisma ORM with MySQL and includes the following models:
+- **User**: User accounts with roles (ADMIN, ORGANIZER, MEMBER)
+- **Event**: Event details and metadata
+- **EventMember**: Event team members
+- **Channel**: Event channels (e.g., Decoration, Logistics)
+- **Subgroup**: Channel subgroups
+- **SubgroupMember**: Subgroup team members
+- **Task**: Task management with status and priority
+- **Message**: Channel messaging
+- **Budget**: Event budget tracking
+- **Expense**: Expense records with approval workflow
+- **Document**: File uploads and document management
 
 [**Full API Documentation**](docs/API.md) (Coming Soon)
 
@@ -264,40 +372,84 @@ We welcome contributions! This project is perfect for:
 
 ## 🗺️ Roadmap
 
-### Phase 1: Foundation (Current)
-- [x] Project setup and basic structure
-- [x] Contributing guidelines and documentation
-- [ ] Basic event CRUD operations
-- [ ] User authentication system
-- [ ] Basic frontend interface
+### Phase 1: Foundation ✅ (Completed)
+- [x] Project setup and monorepo structure
+- [x] Prisma schema design with all entities
+- [x] User authentication (JWT) with registration/login
+- [x] Event CRUD API endpoints
+- [x] Email service with templates
+- [x] Security middleware (Helmet, CORS, Rate Limiting)
+- [x] Next.js frontend setup with Tailwind CSS
 
-### Phase 2: Core Features
-- [ ] Event registration system
-- [ ] Email notifications
-- [ ] Search and filtering
-- [ ] User dashboard
-- [ ] Admin panel
+### Phase 2: Core Features (In Progress)
+- [ ] Frontend UI for authentication pages
+- [ ] Event listing and detail pages
+- [ ] Channel and subgroup management APIs
+- [ ] Task management APIs (CRUD operations)
+- [ ] Budget and expense tracking APIs
+- [ ] Document upload and management
+- [ ] User dashboard and event workspace
 
-### Phase 3: Advanced Features
-- [ ] Payment integration
-- [ ] Calendar synchronization
-- [ ] Mobile app (React Native)
-- [ ] Advanced analytics
-- [ ] API rate limiting and caching
+### Phase 3: Collaboration Features
+- [ ] Real-time chat with Socket.io
+- [ ] Message history and search
+- [ ] Task assignment and status updates
+- [ ] Expense approval workflow
+- [ ] Team member invitations
+- [ ] Role-based permissions UI
+- [ ] Notification system (in-app and email)
 
-### Phase 4: Scale & Polish
-- [ ] Performance optimization
-- [ ] Advanced security features
+### Phase 4: Advanced Features
+- [ ] Analytics dashboard with charts
+- [ ] Calendar integration (Google, Outlook)
+- [ ] Video conferencing integration
+- [ ] Advanced search and filtering
+- [ ] Event templates library
+- [ ] Mobile responsive optimization
+- [ ] Performance optimization and caching
+
+### Phase 5: Scale & Polish
+- [ ] Comprehensive testing suite
+- [ ] API documentation with Swagger
+- [ ] Docker containerization
+- [ ] CI/CD pipeline
+- [ ] Production deployment
 - [ ] Multi-language support
-- [ ] Third-party integrations
-- [ ] Enterprise features
+- [ ] Advanced security audits
 
 ## 📊 Project Status
 
-For detailed information about the current development status, completed tasks, and upcoming milestones, see our [Project Status](PROJECT_STATUS.md) page.
+**Current Phase**: ✅ Phase 1 Complete → 🚧 Phase 2 In Progress  
+**Next Milestone**: Frontend UI Development & Core APIs
 
-**Current Phase**: 🚧 Foundation & Setup  
-**Next Milestone**: Authentication & Database
+### Recent Accomplishments
+- ✅ Complete backend architecture with Fastify
+- ✅ Prisma ORM integration with MySQL
+- ✅ JWT authentication system
+- ✅ Event management APIs
+- ✅ Email service setup
+- ✅ Next.js 16 frontend initialized
+
+### Active Development
+- 🔨 Frontend UI components
+- 🔨 Channel and task management APIs
+- 🔨 Budget tracking features
+
+### Project Structure
+```
+Event_Managment/
+├── client/              # Next.js 16 frontend
+│   ├── src/app/        # App router pages
+│   └── public/         # Static assets
+├── server/             # Fastify backend
+│   ├── db/            # Database connection
+│   ├── emailTemplate/ # Email templates (EJS)
+│   ├── prisma/        # Prisma schema
+│   └── routes/        # API routes
+│       ├── auth/      # Authentication
+│       └── events/    # Event management
+└── idea/              # Product documentation
+```
 
 ## 🏆 Contributors
 
