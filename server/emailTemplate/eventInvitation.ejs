@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Invitation</title>
+    <style>
+        <%- emailStyles %>
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <div class="icon-large">🎊</div>
+            <h1>You're Invited!</h1>
+        </div>
+
+        <div class="content">
+            <p class="greeting">Hi <%= name %>,</p>
+            
+            <p class="message">
+                Great news! You've been invited to join an upcoming event on Event Manager.
+            </p>
+
+            <div class="event-card">
+                <div class="event-title"><%= eventName %></div>
+                
+                <div class="event-detail">
+                    <span class="event-icon">📅</span>
+                    <span><%= new Date(eventDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                </div>
+
+                <div class="event-detail">
+                    <span class="event-icon">📍</span>
+                    <span><%= eventVenue %></span>
+                </div>
+
+                <div class="text-center">
+                    <a href="<%= inviteUrl %>" class="cta-button cta-button-light">Accept Invitation</a>
+                </div>
+            </div>
+
+            <p class="message">
+                By accepting this invitation, you'll be able to:
+            </p>
+
+            <ul class="feature-list color-text font-16 mb-20">
+                <li>View and manage event tasks</li>
+                <li>Collaborate with team members</li>
+                <li>Access event documents and resources</li>
+                <li>Track budget and expenses</li>
+                <li>Participate in team discussions</li>
+            </ul>
+
+            <p class="message">
+                We're excited to have you as part of the team!
+            </p>
+
+            <p class="message">
+                Best regards,<br>
+                <strong>The Event Manager Team</strong>
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>© <%= year %> Event Manager. All rights reserved.</p>
+            <p class="mt-15 font-12 color-muted">
+                You received this invitation from a registered Event Manager user.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
