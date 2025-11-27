@@ -23,11 +23,12 @@
     "noUncheckedSideEffectImports": true,
     "paths": {
       "@/*": [
-        "client/src/*"
+        "./src/*"
       ]
     },
+    "baseUrl": "."
   },
   "include": [
-    "client/src"
+    "src"
   ]
 }

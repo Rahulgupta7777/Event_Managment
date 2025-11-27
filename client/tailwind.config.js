@@ -1,4 +1,5 @@
 import fs from "fs";
+import flowbitePlugin from "flowbite-react/plugin";
 
 /** @type {import('tailwindcss').Config} */
 
@@ -91,6 +92,19 @@ const defaultTheme = {
         overlay: "var(--color-bg-overlay)",
       },
       "focus-ring": "var(--color-focus-ring)",
+      // New Palette
+      primary: {
+        100: "#FEC5BB",
+        200: "#FCD5CE",
+        300: "#FAE1DD",
+        400: "#F8EDEB",
+        500: "#E8E8E4",
+        600: "#D8E2DC",
+        700: "#ECE4DB",
+        800: "#FFE5D9",
+        900: "#FFD7BA",
+        950: "#FEC89A",
+      }
     },
     borderRadius: {
       sm: "var(--radius-sm)",
@@ -142,6 +156,7 @@ const defaultTheme = {
 }
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", "./node_modules/flowbite-react/dist/esm/**/*.js"],
   theme: { ...defaultTheme, ...theme },
+  plugins: [],
 };

@@ -17,7 +17,7 @@ export function DashboardView({ onEventClick, onCreateEvent }: DashboardViewProp
   const totalBudget = mockEvents.reduce((sum, e) => sum + e.budget.total, 0)
   const totalSpent = mockEvents.reduce((sum, e) => sum + e.budget.spent, 0)
   const budgetUtilization = Math.round((totalSpent / totalBudget) * 100)
-  
+
   const activeTasks = mockTasks.filter(t => t.status !== 'done')
   const completedTasks = mockTasks.filter(t => t.status === 'done')
   const taskCompletion = calculateProgress(completedTasks.length, mockTasks.length)
@@ -26,12 +26,12 @@ export function DashboardView({ onEventClick, onCreateEvent }: DashboardViewProp
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-[#1a1a1a] mb-2">Dashboard</h1>
-          <p className="text-[#4a4a4a]">Welcome back! Here's what's happening with your events.</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Dashboard</h1>
+          <p className="text-gray-600">Welcome back! Here's what's happening with your events.</p>
         </div>
         <Button
           onClick={onCreateEvent}
-          className="bg-gradient-to-r from-[#8d6b5b] to-[#a37f6e] hover:from-[#a37f6e] hover:to-[#8d6b5b] text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+          className="bg-gradient-to-r from-primary-300 to-primary-100 hover:from-primary-100 hover:to-primary-300 text-gray-800 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200 border border-primary-200"
         >
           <Plus className="w-4 h-4 mr-2" />
           Create Event
@@ -71,8 +71,8 @@ export function DashboardView({ onEventClick, onCreateEvent }: DashboardViewProp
 
       <div>
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold text-[#1a1a1a]">Active Events</h2>
-          <Button variant="outline" className="bg-white/30 hover:bg-white/50 border-white/40">
+          <h2 className="text-2xl font-semibold text-gray-900">Active Events</h2>
+          <Button variant="outline" className="bg-white/40 hover:bg-white/60 border-primary-200 text-gray-700">
             View All
           </Button>
         </div>
@@ -92,33 +92,33 @@ export function DashboardView({ onEventClick, onCreateEvent }: DashboardViewProp
           <ActivityFeed activities={mockActivities} maxItems={8} />
         </div>
         <div>
-          <div className="bg-white/30 backdrop-blur-xl border border-white/40 rounded-2xl p-6 shadow-lg">
-            <h3 className="text-lg font-semibold text-[#1a1a1a] mb-4">Upcoming Deadlines</h3>
+          <div className="bg-white/60 backdrop-blur-xl border border-primary-200 rounded-2xl p-6 shadow-lg">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Upcoming Deadlines</h3>
             <div className="space-y-4">
               {mockTasks.filter(t => t.dueDate).slice(0, 5).map((task) => (
                 <div key={task.id} className="flex items-start gap-3">
-                  <div className="w-2 h-2 rounded-full bg-[#8d6b5b] mt-2" />
+                  <div className="w-2 h-2 rounded-full bg-primary-950 mt-2" />
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-[#1a1a1a]">{task.title}</p>
-                    <p className="text-xs text-[#8d6b5b]">{task.dueDate}</p>
+                    <p className="text-sm font-medium text-gray-900">{task.title}</p>
+                    <p className="text-xs text-primary-950">{task.dueDate}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 bg-white/30 backdrop-blur-xl border border-white/40 rounded-2xl p-6 shadow-lg">
-            <h3 className="text-lg font-semibold text-[#1a1a1a] mb-4">Quick Actions</h3>
+          <div className="mt-6 bg-white/60 backdrop-blur-xl border border-primary-200 rounded-2xl p-6 shadow-lg">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
             <div className="space-y-2">
-              <Button variant="outline" className="w-full justify-start bg-white/40 hover:bg-white/60 border-white/50">
+              <Button variant="outline" className="w-full justify-start bg-white/40 hover:bg-white/60 border-primary-200 text-gray-700">
                 <Plus className="w-4 h-4 mr-2" />
                 Create Task
               </Button>
-              <Button variant="outline" className="w-full justify-start bg-white/40 hover:bg-white/60 border-white/50">
+              <Button variant="outline" className="w-full justify-start bg-white/40 hover:bg-white/60 border-primary-200 text-gray-700">
                 <Plus className="w-4 h-4 mr-2" />
                 Add Expense
               </Button>
-              <Button variant="outline" className="w-full justify-start bg-white/40 hover:bg-white/60 border-white/50">
+              <Button variant="outline" className="w-full justify-start bg-white/40 hover:bg-white/60 border-primary-200 text-gray-700">
                 <Plus className="w-4 h-4 mr-2" />
                 Upload Document
               </Button>
