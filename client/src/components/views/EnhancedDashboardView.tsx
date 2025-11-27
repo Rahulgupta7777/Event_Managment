@@ -116,7 +116,7 @@ export function EnhancedDashboardView() {
             {/* Quick Actions */}
             <div className="bg-gradient-to-r from-[#ECE4DB] to-[#E8E8E4] border border-[#D8E2DC] rounded-lg p-6">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Quick Actions</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 gap-4 max-w-md">
                     <button className="p-4 bg-white rounded-lg hover:shadow-md transition-shadow border border-[#D8E2DC]">
                         <HiCalendar className="w-8 h-8 mx-auto mb-2 text-gray-700" />
                         <p className="text-sm font-medium text-gray-900">Create Event</p>
@@ -124,14 +124,6 @@ export function EnhancedDashboardView() {
                     <button className="p-4 bg-white rounded-lg hover:shadow-md transition-shadow border border-[#D8E2DC]">
                         <HiClipboard className="w-8 h-8 mx-auto mb-2 text-gray-700" />
                         <p className="text-sm font-medium text-gray-900">Add Task</p>
-                    </button>
-                    <button className="p-4 bg-white rounded-lg hover:shadow-md transition-shadow border border-[#D8E2DC]">
-                        <HiUsers className="w-8 h-8 mx-auto mb-2 text-gray-700" />
-                        <p className="text-sm font-medium text-gray-900">Invite Member</p>
-                    </button>
-                    <button className="p-4 bg-white rounded-lg hover:shadow-md transition-shadow border border-[#D8E2DC]">
-                        <HiCurrencyDollar className="w-8 h-8 mx-auto mb-2 text-gray-700" />
-                        <p className="text-sm font-medium text-gray-900">Add Expense</p>
                     </button>
                 </div>
             </div>

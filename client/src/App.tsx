@@ -1,16 +1,9 @@
 import { useState } from 'react'
 import { FullSidebar } from './components/layout/FullSidebar'
-import { TopNavBar } from './components/layout/TopNavBar'
-import { EnhancedDashboardView } from './components/views/EnhancedDashboardView'
 import { CreateEventView } from './components/views/CreateEventView'
-import { TasksKanbanView } from './components/views/TasksKanbanView'
-import { TeamView } from './components/views/TeamView'
-import { BudgetView } from './components/views/BudgetView'
+import { TaskView } from './components/views/TaskView'
 import { GroupChatView } from './components/views/GroupChatView'
-import { DocumentsView } from './components/views/DocumentsView'
-import { ChannelsView } from './components/views/ChannelsView'
-import { ProfileView } from './components/views/ProfileView'
-import { SettingsView } from './components/views/SettingsView'
+import { TeamView } from './components/views/TeamView'
 import './App.css'
 
 function App() {
@@ -30,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAE1DD] via-[#F8EDEB] to-[#E8E8E4]">
+    <div className="min-h-screen bg-gradient-to-br from-[#FAE1DD] to-[#FEC5BB]">
       {/* Sidebar */}
       <FullSidebar
         activeView={activeView}
@@ -39,26 +32,46 @@ function App() {
         onToggle={handleToggleSidebar}
       />
 
-      {/* Top Navigation Bar */}
-      <TopNavBar
-        onProfileClick={() => handleNavigate('profile')}
-        onSettingsClick={() => handleNavigate('settings')}
-        userName="John Doe"
-      />
-
       {/* Main Content */}
-      <div className="sm:ml-64 pt-16 min-h-screen">
-        {activeView === 'dashboard' && <EnhancedDashboardView />}
-        {activeView === 'events' && <CreateEventView />}
+      <div className="sm:ml-64 p-4">
+        {activeView === 'dashboard' && <DashboardView />}
         {activeView === 'create-event' && <CreateEventView />}
-        {activeView === 'channels' && <ChannelsView />}
-        {activeView === 'tasks' && <TasksKanbanView />}
-        {activeView === 'team' && <TeamView />}
-        {activeView === 'budget' && <BudgetView />}
+        {activeView === 'events' && <CreateEventView />}
+        {activeView === 'tasks' && <TaskView />}
         {activeView === 'messages' && <GroupChatView />}
-        {activeView === 'documents' && <DocumentsView />}
-        {activeView === 'profile' && <ProfileView />}
-        {activeView === 'settings' && <SettingsView />}
+        {activeView === 'team' && <TeamView />}
+
+        {/* Placeholder views for other navigation items */}
+        {(activeView === 'channels' || activeView === 'budget' || activeView === 'documents' ||
+          activeView === 'profile' || activeView === 'settings') && (
+            <div className="p-8 text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Coming Soon</h2>
+              <p className="text-gray-600">This feature is under development</p>
+            </div>
+          )}
+      </div>
+    </div>
+  )
+}
+
+// Simple Dashboard View
+function DashboardView() {
+  return (
+    <div className="py-8 px-4 mx-auto max-w-7xl">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white rounded-lg p-6 border border-[#E8E8E4] shadow-sm">
+          <h3 className="text-sm font-medium text-gray-500">Total Events</h3>
+          <p className="text-3xl font-bold text-gray-900 mt-2">12</p>
+        </div>
+        <div className="bg-white rounded-lg p-6 border border-[#E8E8E4] shadow-sm">
+          <h3 className="text-sm font-medium text-gray-500">Active Tasks</h3>
+          <p className="text-3xl font-bold text-gray-900 mt-2">8</p>
+        </div>
+        <div className="bg-white rounded-lg p-6 border border-[#E8E8E4] shadow-sm">
+          <h3 className="text-sm font-medium text-gray-500">Team Members</h3>
+          <p className="text-3xl font-bold text-gray-900 mt-2">5</p>
+        </div>
       </div>
     </div>
   )
