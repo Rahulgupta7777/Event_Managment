@@ -1,26 +1,25 @@
-import { useState } from 'react'
-import { FullSidebar } from './components/layout/FullSidebar'
-import { CreateEventView } from './components/views/CreateEventView'
-import { TaskView } from './components/views/TaskView'
-import { GroupChatView } from './components/views/GroupChatView'
-import { TeamView } from './components/views/TeamView'
-import './App.css'
+import { useState } from "react";
+import { FullSidebar } from "./components/layout/FullSidebar";
+import { CreateEventView } from "./components/views/CreateEventView";
+import { TaskView } from "./components/views/TaskView";
+import { GroupChatView } from "./components/views/GroupChatView";
+import "./App.css";
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [activeView, setActiveView] = useState('dashboard')
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeView, setActiveView] = useState("dashboard");
 
   const handleNavigate = (view: string) => {
-    setActiveView(view)
+    setActiveView(view);
     // Close sidebar on mobile after navigation
     if (window.innerWidth < 640) {
-      setSidebarOpen(false)
+      setSidebarOpen(false);
     }
-  }
+  };
 
   const handleToggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen)
-  }
+    setSidebarOpen(!sidebarOpen);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FAE1DD] to-[#FEC5BB]">
@@ -34,24 +33,28 @@ function App() {
 
       {/* Main Content */}
       <div className="sm:ml-64 p-4">
-        {activeView === 'dashboard' && <DashboardView />}
-        {activeView === 'create-event' && <CreateEventView />}
-        {activeView === 'events' && <CreateEventView />}
-        {activeView === 'tasks' && <TaskView />}
-        {activeView === 'messages' && <GroupChatView />}
-        {activeView === 'team' && <TeamView />}
+        {activeView === "dashboard" && <DashboardView />}
+        {activeView === "create-event" && <CreateEventView />}
+        {activeView === "events" && <CreateEventView />}
+        {activeView === "tasks" && <TaskView />}
+        {activeView === "messages" && <GroupChatView />}
 
         {/* Placeholder views for other navigation items */}
-        {(activeView === 'channels' || activeView === 'budget' || activeView === 'documents' ||
-          activeView === 'profile' || activeView === 'settings') && (
-            <div className="p-8 text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Coming Soon</h2>
-              <p className="text-gray-600">This feature is under development</p>
-            </div>
-          )}
+        {(activeView === "channels" ||
+          activeView === "budget" ||
+          activeView === "documents" ||
+          activeView === "profile" ||
+          activeView === "settings") && (
+          <div className="p-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Coming Soon
+            </h2>
+            <p className="text-gray-600">This feature is under development</p>
+          </div>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
 // Simple Dashboard View
@@ -74,7 +77,7 @@ function DashboardView() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
