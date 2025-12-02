@@ -1,22 +1,23 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, MoreHorizontal } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { eventsApi } from "../../../lib/api";
 
 export const EventList = () => {
+    const navigate = useNavigate();
     const { data: events, isLoading, error } = useQuery({
         queryKey: ['events'],
         queryFn: eventsApi.getAll,
         select: (data) => data.map((event: any) => ({
             ...event,
-            // Transform backend data to frontend format if needed
-            // Backend: budget (decimal string), Frontend: budget { total, spent }
+            
             budget: {
                 total: Number(event.budget) || 0,
-                spent: 0 // TODO: Calculate from expenses
+                spent: 0 
             },
-            status: event.status || 'Planning', // Default status
-            color: "bg-[#ffcc00]" // Default color or map from type
+            status: event.status || 'Planning', 
+            color: "bg-[#ffcc00]" 
         }))
     });
 
@@ -75,7 +76,10 @@ export const EventList = () => {
                 )}
             </div>
 
-            <button className="w-full mt-6 py-3 border-2 border-dashed border-[var(--color-ink)]/30 rounded-xl font-hand text-[var(--color-ink)]/60 hover:border-[var(--color-ink)] hover:text-[var(--color-ink)] transition-all">
+            <button 
+                onClick={() => navigate('/create')}
+                className="w-full mt-6 py-3 border-2 border-dashed border-[var(--color-ink)]/30 rounded-xl font-hand text-[var(--color-ink)]/60 hover:border-[var(--color-ink)] hover:text-[var(--color-ink)] transition-all"
+            >
                 + Create New Event
             </button>
         </div>

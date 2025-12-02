@@ -32,27 +32,7 @@ export const getEvent = async (c) => {
 
 export const createEvent = async (c) => {
     try {
-        const auth = c.get('authUser');
-        if (!auth?.session?.user) {
-            return c.json({ error: 'Unauthorized' }, 401);
-        }
-
-        // Need to find the user ID from the session email/id
-        // Auth.js session usually has email. We need to look up the user in our DB to get the ID.
-        // Or if using database session strategy, the user ID might be in the session.
-        // Let's assume we can get the user ID.
-        // For now, let's look up user by email if ID is not directly available.
-
         const db = await getDb();
-        const userEmail = auth.session.user.email;
-        const user = await db.select().from(schema.users).where(eq(schema.users.email, userEmail));
-
-        if (user.length === 0) {
-            return c.json({ error: 'User not found' }, 404);
-        }
-
-        const organizerId = user[0].id;
-
         const body = await c.req.json();
         const { title, description, date, location, budget, category, guestCount } = body;
 
@@ -60,12 +40,22 @@ export const createEvent = async (c) => {
             return c.json({ error: 'Title and Date are required' }, 400);
         }
 
+        
+        let organizerId = 'guest-user-id'; 
+        const auth = c.get('authUser');
+        if (auth?.session?.user?.email) {
+            const user = await db.select().from(schema.users).where(eq(schema.users.email, auth.session.user.email));
+            if (user.length > 0) {
+                organizerId = user[0].id;
+            }
+        }
+
         const newEvent = {
             title,
             description,
             date: new Date(date),
             location,
-            budget: budget ? String(budget) : null, // Decimal handling
+            budget: budget ? String(budget) : null,
             category,
             guestCount: guestCount ? Number(guestCount) : null,
             organizerId,
