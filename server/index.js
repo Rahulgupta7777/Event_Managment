@@ -3,19 +3,17 @@ import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { drizzle } from 'drizzle-orm/mysql2'
-import mysql from 'mysql2/promise'
 import { authHandler, initAuthConfig, verifyAuth } from '@hono/auth-js'
 import Google from '@auth/core/providers/google'
 import GitHub from '@auth/core/providers/github'
 import { DrizzleAdapter } from '@auth/drizzle-adapter'
-import * as schema from './schema.js'
+import { getDb } from './src/db/index.js'
+import events from './src/routes/events.js'
 
 const app = new Hono()
 
-// Database connection
-const connection = await mysql.createConnection(process.env.DATABASE_URL)
-const db = drizzle(connection, { schema, mode: 'default' })
+// Initialize DB
+const db = await getDb()
 
 app.use('*', logger())
 app.use('*', cors())
@@ -37,6 +35,9 @@ app.use('*', initAuthConfig((c) => ({
 })))
 
 app.use('/api/auth/*', authHandler())
+
+// Mount Routes
+app.route('/api/events', events)
 
 // Health check
 app.get('/', (c) => {

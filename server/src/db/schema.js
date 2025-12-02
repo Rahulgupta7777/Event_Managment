@@ -6,7 +6,8 @@ import {
     varchar,
     text,
     boolean,
-    datetime
+    datetime,
+    decimal
 } from "drizzle-orm/mysql-core"
 
 export const users = mysqlTable("user", {
@@ -76,6 +77,9 @@ export const events = mysqlTable("event", {
     description: text("description"),
     date: datetime("date").notNull(),
     location: varchar("location", { length: 255 }),
+    budget: decimal("budget", { precision: 10, scale: 2 }),
+    category: varchar("category", { length: 50 }),
+    guestCount: int("guestCount"),
     organizerId: varchar("organizerId", { length: 255 })
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
