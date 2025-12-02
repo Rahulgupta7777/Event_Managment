@@ -6,6 +6,8 @@ import { CanvasDashboard } from "./components/views/CanvasDashboard";
 import { CreateEventView } from "./components/views/CreateEventView";
 import { TaskView } from "./components/views/TaskView";
 import { GroupChatView } from "./components/views/GroupChatView";
+import { ChannelList } from "./components/views/channels/ChannelList";
+import { ChannelView } from "./components/views/channels/ChannelView";
 import { useAppStore } from "./store/useAppStore";
 import "./App.css";
 
@@ -56,6 +58,16 @@ function App() {
                 {activeView === "create-event" && <CreateEventView />}
                 {activeView === "tasks" && <TaskView />}
                 {activeView === "messages" && <GroupChatView />}
+                {activeView === "channels" && (
+                  <div className="flex h-screen pt-12 pb-12 max-w-7xl mx-auto">
+                    <div className="w-80 h-full">
+                      <ChannelList />
+                    </div>
+                    <div className="flex-1 h-full">
+                      <ChannelView />
+                    </div>
+                  </div>
+                )}
 
                 {/* Placeholder for other views */}
                 {["team", "settings", "canvas"].includes(activeView) && (

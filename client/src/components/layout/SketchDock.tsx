@@ -4,7 +4,8 @@ import {
     PenTool,
     CheckSquare,
     MessageSquare,
-    Users
+    Users,
+    Hash
 } from "lucide-react";
 import { useAppStore } from "../../store/useAppStore";
 
@@ -16,6 +17,7 @@ export const SketchDock = () => {
         { id: "create-event", icon: PenTool, label: "Draft" },
         { id: "tasks", icon: CheckSquare, label: "To-Dos" },
         { id: "messages", icon: MessageSquare, label: "Notes" },
+        { id: "channels", icon: Hash, label: "Channels" },
         { id: "team", icon: Users, label: "Crew" },
     ];
 
