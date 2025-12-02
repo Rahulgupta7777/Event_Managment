@@ -1,81 +1,85 @@
-import { useState } from "react";
-import { FullSidebar } from "./components/layout/FullSidebar";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { SoulLoader } from "./components/ui/SoulLoader";
+import { SketchDock } from "./components/layout/SketchDock";
+import { CanvasDashboard } from "./components/views/CanvasDashboard";
 import { CreateEventView } from "./components/views/CreateEventView";
 import { TaskView } from "./components/views/TaskView";
 import { GroupChatView } from "./components/views/GroupChatView";
+import { useAppStore } from "./store/useAppStore";
 import "./App.css";
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeView, setActiveView] = useState("dashboard");
+  const { activeView } = useAppStore();
+  const [isLoading, setIsLoading] = useState(true);
 
-  const handleNavigate = (view: string) => {
-    setActiveView(view);
-    // Close sidebar on mobile after navigation
-    if (window.innerWidth < 640) {
-      setSidebarOpen(false);
-    }
-  };
-
-  const handleToggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  useEffect(() => {
+    // Fake loading time
+    const timer = setTimeout(() => setIsLoading(false), 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FAE1DD] to-[#FEC5BB]">
-      {/* Sidebar */}
-      <FullSidebar
-        activeView={activeView}
-        onNavigate={handleNavigate}
-        sidebarOpen={sidebarOpen}
-        onToggle={handleToggleSidebar}
-      />
+    <div className="min-h-screen bg-[var(--color-paper)] text-[var(--color-ink)] overflow-hidden selection:bg-[var(--color-highlight)]">
+      {/* InkCursor removed for performance */}
 
-      {/* Main Content */}
-      <div className="sm:ml-64 p-4">
-        {activeView === "dashboard" && <DashboardView />}
-        {activeView === "create-event" && <CreateEventView />}
-        {activeView === "events" && <CreateEventView />}
-        {activeView === "tasks" && <TaskView />}
-        {activeView === "messages" && <GroupChatView />}
-
-        {/* Placeholder views for other navigation items */}
-        {(activeView === "channels" ||
-          activeView === "budget" ||
-          activeView === "documents" ||
-          activeView === "profile" ||
-          activeView === "settings") && (
-          <div className="p-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              Coming Soon
-            </h2>
-            <p className="text-gray-600">This feature is under development</p>
-          </div>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <motion.div
+            key="loader"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <SoulLoader />
+          </motion.div>
         )}
-      </div>
-    </div>
-  );
-}
+      </AnimatePresence>
 
-// Simple Dashboard View
-function DashboardView() {
-  return (
-    <div className="py-8 px-4 mx-auto max-w-7xl">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg p-6 border border-[#E8E8E4] shadow-sm">
-          <h3 className="text-sm font-medium text-gray-500">Total Events</h3>
-          <p className="text-3xl font-bold text-gray-900 mt-2">12</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 border border-[#E8E8E4] shadow-sm">
-          <h3 className="text-sm font-medium text-gray-500">Active Tasks</h3>
-          <p className="text-3xl font-bold text-gray-900 mt-2">8</p>
-        </div>
-        <div className="bg-white rounded-lg p-6 border border-[#E8E8E4] shadow-sm">
-          <h3 className="text-sm font-medium text-gray-500">Team Members</h3>
-          <p className="text-3xl font-bold text-gray-900 mt-2">5</p>
-        </div>
-      </div>
+      {/* 
+        Leo's Diary:
+        The "Studio" is messy. It's real.
+        We use AnimatePresence to ensure that even the exit of a view is felt.
+      */}
+      {!isLoading && (
+        <>
+          <main className="relative w-full h-screen overflow-y-auto overflow-x-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeView}
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, filter: "blur(4px)" }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="w-full min-h-full"
+              >
+                {activeView === "dashboard" && <CanvasDashboard />}
+                {activeView === "create-event" && <CreateEventView />}
+                {activeView === "tasks" && <TaskView />}
+                {activeView === "messages" && <GroupChatView />}
+
+                {/* Placeholder for other views */}
+                {["team", "settings", "canvas"].includes(activeView) && (
+                  <div className="flex flex-col items-center justify-center h-[80vh] text-center">
+                    <motion.h2
+                      initial={{ scale: 0.9 }}
+                      animate={{ scale: 1 }}
+                      className="text-6xl font-serif font-bold mb-6 text-[#1a1a1a]"
+                    >
+                      Under Construction
+                    </motion.h2>
+                    <p className="font-hand text-2xl text-[#1a1a1a]/60 max-w-md">
+                      I haven't drawn this part yet. <br />
+                      Need more coffee.
+                    </p>
+                  </div>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </main>
+
+          <SketchDock />
+        </>
+      )}
     </div>
   );
 }
