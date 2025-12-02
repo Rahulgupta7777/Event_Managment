@@ -21,6 +21,8 @@ interface ChannelState {
     activeSubgroupId: string | null;
     setActiveChannel: (channelId: string | null) => void;
     setActiveSubgroup: (subgroupId: string | null) => void;
+    addChannel: (channel: Omit<Channel, 'id' | 'subgroups'>) => void;
+    addSubgroup: (channelId: string, subgroup: Omit<Subgroup, 'id'>) => void;
 }
 
 export const useChannelStore = create<ChannelState>((set) => ({
@@ -75,4 +77,18 @@ export const useChannelStore = create<ChannelState>((set) => ({
     activeSubgroupId: null,
     setActiveChannel: (channelId) => set({ activeChannelId: channelId, activeSubgroupId: null }),
     setActiveSubgroup: (subgroupId) => set({ activeSubgroupId: subgroupId }),
+    addChannel: (channel) => set((state) => ({
+        channels: [...state.channels, {
+            ...channel,
+            id: Date.now().toString(),
+            subgroups: [],
+        }]
+    })),
+    addSubgroup: (channelId, subgroup) => set((state) => ({
+        channels: state.channels.map(ch => 
+            ch.id === channelId 
+                ? { ...ch, subgroups: [...ch.subgroups, { ...subgroup, id: Date.now().toString() }] }
+                : ch
+        )
+    })),
 }));
