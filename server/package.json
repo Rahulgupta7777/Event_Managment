@@ -1,0 +1,30 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@auth/core": "^0.34.3",
+    "@auth/drizzle-adapter": "^1.11.1",
+    "@hono/auth-js": "^1.1.0",
+    "@hono/node-server": "^1.19.6",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.7",
+    "hono": "^4.10.7",
+    "mysql2": "^3.15.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "drizzle-kit": "^0.31.7",
+    "tsx": "^4.21.0"
+  }
+}

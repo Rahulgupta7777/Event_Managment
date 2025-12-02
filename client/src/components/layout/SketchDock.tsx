@@ -8,17 +8,20 @@ import {
     Hash
 } from "lucide-react";
 import { useAppStore } from "../../store/useAppStore";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const SketchDock = () => {
-    const { activeView, setActiveView, setCursorVariant } = useAppStore();
+    const { setCursorVariant } = useAppStore();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const items = [
-        { id: "dashboard", icon: LayoutGrid, label: "The Desk" },
-        { id: "create-event", icon: PenTool, label: "Draft" },
-        { id: "tasks", icon: CheckSquare, label: "To-Dos" },
-        { id: "messages", icon: MessageSquare, label: "Notes" },
-        { id: "channels", icon: Hash, label: "Channels" },
-        { id: "team", icon: Users, label: "Crew" },
+        { id: "dashboard", path: "/", icon: LayoutGrid, label: "The Desk" },
+        { id: "create-event", path: "/create", icon: PenTool, label: "Draft" },
+        { id: "tasks", path: "/tasks", icon: CheckSquare, label: "To-Dos" },
+        { id: "messages", path: "/messages", icon: MessageSquare, label: "Notes" },
+        { id: "channels", path: "/channels", icon: Hash, label: "Channels" },
+        { id: "team", path: "/team", icon: Users, label: "Crew" },
     ];
 
     return (
@@ -33,8 +36,8 @@ export const SketchDock = () => {
                     <DockItem
                         key={item.id}
                         item={item}
-                        isActive={activeView === item.id}
-                        onClick={() => setActiveView(item.id)}
+                        isActive={location.pathname === item.path}
+                        onClick={() => navigate(item.path)}
                         onHoverStart={() => setCursorVariant("hover")}
                         onHoverEnd={() => setCursorVariant("default")}
                     />
