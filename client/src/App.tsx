@@ -23,7 +23,6 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-paper)] text-[var(--color-ink)] overflow-hidden selection:bg-[var(--color-highlight)]">
-      {/* InkCursor removed for performance */}
 
       <AnimatePresence mode="wait">
         {isLoading && (
@@ -37,11 +36,6 @@ function App() {
         )}
       </AnimatePresence>
 
-      {/* 
-        Leo's Diary:
-        The "Studio" is messy. It's real.
-        We use AnimatePresence to ensure that even the exit of a view is felt.
-      */}
       {!isLoading && (
         <>
           <main className="relative w-full h-screen overflow-y-auto overflow-x-hidden">

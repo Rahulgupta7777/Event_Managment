@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@auth/core": "^0.34.3",
+    "@hono/auth-js": "^1.1.0",
+    "@hono/node-server": "^1.19.6",
+    "@prisma/client": "5.22.0",
+    "@zenstackhq/runtime": "2.22.0",
+    "@zenstackhq/server": "2.22.0",
+    "dotenv": "^17.2.3",
+    "hono": "^4.10.7"
+  },
+  "devDependencies": {
+    "@zenstackhq/openapi": "^2.22.0",
+    "prisma": "5.22.0",
+    "zenstack": "2.22.0"
+  }
+}
