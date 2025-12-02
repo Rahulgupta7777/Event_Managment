@@ -9,9 +9,12 @@ import { TaskView } from "./components/views/TaskView";
 import { GroupChatView } from "./components/views/GroupChatView";
 import { ChannelList } from "./components/views/channels/ChannelList";
 import { ChannelView } from "./components/views/channels/ChannelView";
+import { LoginSignupView } from "./components/views/LoginSignupView";
+import { useAppStore } from "./store/useAppStore";
 import "./App.css";
 
 function App() {
+  const { isAuthenticated } = useAppStore();
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
@@ -36,7 +39,9 @@ function App() {
         )}
       </AnimatePresence>
 
-      {!isLoading && (
+      {!isLoading && !isAuthenticated && <LoginSignupView />}
+
+      {!isLoading && isAuthenticated && (
         <>
           <main className="relative w-full h-screen overflow-y-auto overflow-x-hidden">
             <AnimatePresence mode="wait">
