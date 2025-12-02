@@ -10,22 +10,21 @@ const events = new Hono();
 
 events.get('/', eventController.getEvents);
 events.get('/:id', eventController.getEvent);
-events.post('/', eventController.createEvent); 
-
-
-events.use('/*', verifyAuth());
-events.put('/:id', eventController.updateEvent);
-events.delete('/:id', eventController.deleteEvent);
-
-
-
-events.get('/:eventId/channels', channelController.getChannels);
-events.post('/:eventId/channels', channelController.createChannel);
+events.post('/', eventController.createEvent);
 
 
 events.get('/:eventId/tasks', taskController.getTasks);
 events.post('/:eventId/tasks', taskController.createTask);
-events.put('/tasks/:id', taskController.updateTask); // Note: ID based update
+events.put('/tasks/:id', taskController.updateTask);
+
+=
+events.get('/:eventId/channels', channelController.getChannels);
+events.post('/:eventId/channels', channelController.createChannel);
+
+
+events.use('/*', verifyAuth());
+events.put('/:id', eventController.updateEvent);
+events.delete('/:id', eventController.deleteEvent); 
 
 
 events.get('/:eventId/expenses', expenseController.getExpenses);
