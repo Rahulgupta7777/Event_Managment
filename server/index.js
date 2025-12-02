@@ -1,18 +1,21 @@
+import 'dotenv/config'
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
-import { PrismaClient } from '@prisma/client'
-import { enhance } from '@zenstackhq/runtime'
-import { createHonoHandler } from '@zenstackhq/server/hono'
+import { drizzle } from 'drizzle-orm/mysql2'
+import mysql from 'mysql2/promise'
 import { authHandler, initAuthConfig, verifyAuth } from '@hono/auth-js'
 import Google from '@auth/core/providers/google'
 import GitHub from '@auth/core/providers/github'
-import { PrismaAdapter } from '@auth/prisma-adapter'
+import { DrizzleAdapter } from '@auth/drizzle-adapter'
+import * as schema from './schema.js'
 
 const app = new Hono()
 
-const prisma = new PrismaClient()
+// Database connection
+const connection = await mysql.createConnection(process.env.DATABASE_URL)
+const db = drizzle(connection, { schema, mode: 'default' })
 
 app.use('*', logger())
 app.use('*', cors())
@@ -30,23 +33,14 @@ app.use('*', initAuthConfig((c) => ({
             clientSecret: process.env.GITHUB_SECRET,
         }),
     ],
-    adapter: PrismaAdapter(prisma),
+    adapter: DrizzleAdapter(db),
 })))
 
 app.use('/api/auth/*', authHandler())
 
-// ZenStack automatic CRUD API
-// This creates routes like /api/model/user, /api/model/event, etc.
-const factory = createHonoHandler({ prefix: '/api/model' })
-app.use('/api/model/*', factory(async (c) => {
-    const auth = c.get('authUser')
-    // Enhance Prisma with user context for access policies
-    return enhance(prisma, { user: auth?.session?.user })
-}))
-
 // Health check
 app.get('/', (c) => {
-    return c.text('Hello Hono!')
+    return c.text('Hello Hono with Drizzle (MySQL)!')
 })
 
 const port = 3000
