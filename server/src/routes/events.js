@@ -17,7 +17,6 @@ events.get('/:eventId/tasks', taskController.getTasks);
 events.post('/:eventId/tasks', taskController.createTask);
 events.put('/tasks/:id', taskController.updateTask);
 
-=
 events.get('/:eventId/channels', channelController.getChannels);
 events.post('/:eventId/channels', channelController.createChannel);
 
