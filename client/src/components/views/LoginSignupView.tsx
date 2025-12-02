@@ -189,14 +189,9 @@ export const LoginSignupView = () => {
 
                             <div className="mt-8 pt-6 border-t-2 border-dashed border-[var(--color-ink)]/20">
                                 <p className="text-center font-hand text-sm text-[var(--color-ink)]/50 mb-4">Or continue with</p>
-                                <div className="flex gap-3">
-                                    <button className="flex-1 py-3 border-2 border-[var(--color-ink)]/20 rounded-xl font-serif hover:border-[var(--color-ink)] hover:shadow-[2px_2px_0px_var(--color-ink)] transition-all">
-                                        Google
-                                    </button>
-                                    <button className="flex-1 py-3 border-2 border-[var(--color-ink)]/20 rounded-xl font-serif hover:border-[var(--color-ink)] hover:shadow-[2px_2px_0px_var(--color-ink)] transition-all">
-                                        GitHub
-                                    </button>
-                                </div>
+                                <button className="w-full py-3 border-2 border-[var(--color-ink)]/20 rounded-xl font-serif hover:border-[var(--color-ink)] hover:shadow-[2px_2px_0px_var(--color-ink)] transition-all">
+                                    Google
+                                </button>
                             </div>
                         </div>
                     </div>
