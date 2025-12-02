@@ -1,55 +1,69 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { useAppStore } from "../../store/useAppStore";
+import { Send } from "lucide-react";
 
 export function GroupChatView() {
+  const { setCursorVariant } = useAppStore();
+
   return (
-    <div className="p-4 sm:ml-64 bg-primary-100 dark:bg-gray-900 min-h-screen">
-      <div className="p-4 border-2 border-primary-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Group Chat
+    <div className="min-h-screen w-full p-8 md:p-12 md:pl-32 max-w-5xl mx-auto flex flex-col">
+      <header className="mb-8">
+        <h2 className="text-6xl font-serif font-bold text-[#1a1a1a] mb-4">
+          Team Chat
         </h2>
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 h-[600px] flex flex-col">
-          <div className="flex-1 overflow-y-auto mb-4 space-y-4">
-            {/* Mock Messages */}
-            <div className="flex items-start">
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 rounded-full bg-primary-300 flex items-center justify-center text-sm font-bold text-gray-700">
-                  A
-                </div>
-              </div>
-              <div className="ml-3 bg-primary-100 p-3 rounded-lg">
-                <p className="text-sm text-gray-800">
-                  Hey team, how is the event planning going?
-                </p>
-              </div>
+        <p className="text-xl font-hand text-[#1a1a1a]/60">
+          Collaborate with your team in real-time.
+        </p>
+      </header>
+
+      <div className="flex-1 bg-[#1a1a1a]/5 rounded-3xl p-6 md:p-8 flex flex-col relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(#1a1a1a 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+
+        <div className="flex-1 overflow-y-auto space-y-8 pr-4">
+          {/* Message Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-end gap-4"
+          >
+            <div className="w-10 h-10 rounded-full bg-[var(--color-secondary)] border-2 border-[var(--color-ink)] flex items-center justify-center font-bold font-serif">A</div>
+            <div className="bg-white p-6 rounded-2xl rounded-bl-none shadow-sm border border-[#1a1a1a]/10 max-w-md rotate-1">
+              <p className="font-hand text-lg">Hey! Did anyone order the balloons? 🎈</p>
             </div>
-            <div className="flex items-start justify-end">
-              <div className="mr-3 bg-primary-200 p-3 rounded-lg">
-                <p className="text-sm text-gray-800">
-                  We are on track! Just need to finalize the catering.
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <div className="w-8 h-8 rounded-full bg-primary-400 flex items-center justify-center text-sm font-bold text-gray-700">
-                  Me
-                </div>
-              </div>
+          </motion.div>
+
+          {/* Message Right */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-end gap-4 justify-end"
+          >
+            <div className="bg-[var(--color-ink)] text-[var(--color-paper)] p-6 rounded-2xl rounded-br-none shadow-sm max-w-md -rotate-1">
+              <p className="font-hand text-lg">On it! I ordered 500. Is that enough?</p>
             </div>
-          </div>
-          <div className="mt-auto">
-            <form className="flex gap-2">
-              <input
-                type="text"
-                className="flex-1 bg-gray-50 border border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Type a message..."
-              />
-              <button
-                type="submit"
-                className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >
-                Send
-              </button>
-            </form>
-          </div>
+            <div className="w-10 h-10 rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-ink)] flex items-center justify-center font-bold font-serif text-white">M</div>
+          </motion.div>
+        </div>
+
+        {/* Input Area */}
+        <div className="mt-8 relative">
+          <input
+            type="text"
+            placeholder="Type a message..."
+            className="w-full bg-white rounded-full py-4 px-8 pr-16 font-hand text-xl border-2 border-[#1a1a1a]/10 focus:border-[#1a1a1a] focus:outline-none shadow-sm transition-colors"
+            onMouseEnter={() => setCursorVariant("text")}
+            onMouseLeave={() => setCursorVariant("default")}
+          />
+          <button
+            className="absolute right-2 top-2 w-12 h-12 bg-[#1a1a1a] rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform"
+            onMouseEnter={() => setCursorVariant("hover")}
+            onMouseLeave={() => setCursorVariant("default")}
+          >
+            <Send size={20} />
+          </button>
         </div>
       </div>
     </div>

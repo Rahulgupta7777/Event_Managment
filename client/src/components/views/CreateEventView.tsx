@@ -1,118 +1,123 @@
-import React from "react";
+import { motion } from "framer-motion";
+import { useAppStore } from "../../store/useAppStore";
 
 export function CreateEventView() {
+  const { setCursorVariant } = useAppStore();
+
   return (
-    <section className="bg-primary-100 dark:bg-gray-900 min-h-screen p-4 sm:ml-64">
-      <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
-        <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-          Create New Event
-        </h2>
-        <form action="#">
-          <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Event Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                className="bg-white border border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Type event name"
-                required
-              />
-            </div>
-            <div className="w-full">
-              <label
-                htmlFor="date"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Date
+    <div className="min-h-screen w-full p-8 md:p-12 md:pl-32 max-w-5xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <header className="mb-12">
+          <h2 className="text-6xl font-serif font-bold text-[#1a1a1a] mb-4">
+            Create New Event
+          </h2>
+          <p className="text-xl font-hand text-[#1a1a1a]/60">
+            Enter the details below to get started.
+          </p>
+        </header>
+
+        <form className="space-y-12">
+          {/* Event Name - The Big Title */}
+          <div className="relative group">
+            <input
+              type="text"
+              id="name"
+              placeholder="Event Name"
+              className="w-full bg-transparent text-4xl font-serif font-bold text-[var(--color-ink)] placeholder:text-[var(--color-ink)]/20 border-b-4 border-[var(--color-ink)]/10 focus:border-[var(--color-accent)] focus:outline-none py-4 transition-colors"
+              onMouseEnter={() => setCursorVariant("text")}
+              onMouseLeave={() => setCursorVariant("default")}
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Date */}
+            <div className="space-y-2">
+              <label htmlFor="date" className="block font-hand text-lg text-[#1a1a1a]/60">
+                Event Date
               </label>
               <input
                 type="date"
-                name="date"
                 id="date"
-                className="bg-white border border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                required
+                className="w-full bg-transparent text-xl font-serif text-[var(--color-ink)] border-b-2 border-[var(--color-ink)]/10 focus:border-[var(--color-accent)] focus:outline-none py-2"
               />
             </div>
-            <div className="w-full">
-              <label
-                htmlFor="budget"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Budget
+
+            {/* Budget */}
+            <div className="space-y-2">
+              <label htmlFor="budget" className="block font-hand text-lg text-[#1a1a1a]/60">
+                Total Budget
               </label>
               <input
                 type="number"
-                name="budget"
                 id="budget"
-                className="bg-white border border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="$2999"
-                required
+                placeholder="$0.00"
+                className="w-full bg-transparent text-xl font-serif text-[var(--color-ink)] border-b-2 border-[var(--color-ink)]/10 focus:border-[var(--color-accent)] focus:outline-none py-2"
               />
             </div>
-            <div>
-              <label
-                htmlFor="category"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Category
+
+            {/* Category */}
+            <div className="space-y-2">
+              <label htmlFor="category" className="block font-hand text-lg text-[#1a1a1a]/60">
+                Event Category
               </label>
               <select
                 id="category"
-                className="bg-white border border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                className="w-full bg-transparent text-xl font-serif text-[var(--color-ink)] border-b-2 border-[var(--color-ink)]/10 focus:border-[var(--color-accent)] focus:outline-none py-2 appearance-none"
               >
-                <option defaultValue="">Select category</option>
+                <option value="">Select category...</option>
                 <option value="wedding">Wedding</option>
                 <option value="corporate">Corporate</option>
                 <option value="birthday">Birthday</option>
                 <option value="other">Other</option>
               </select>
             </div>
-            <div>
-              <label
-                htmlFor="guests"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Guests
+
+            {/* Guests */}
+            <div className="space-y-2">
+              <label htmlFor="guests" className="block font-hand text-lg text-[#1a1a1a]/60">
+                Guest Count
               </label>
               <input
                 type="number"
-                name="guests"
                 id="guests"
-                className="bg-white border border-primary-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="100"
-                required
+                placeholder="0"
+                className="w-full bg-transparent text-xl font-serif text-[var(--color-ink)] border-b-2 border-[var(--color-ink)]/10 focus:border-[var(--color-accent)] focus:outline-none py-2"
               />
             </div>
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="description"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Description
-              </label>
-              <textarea
-                id="description"
-                rows={8}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-primary-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Your description here"
-              ></textarea>
-            </div>
           </div>
-          <button
-            type="submit"
-            className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-gray-900 bg-primary-400 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-500"
-          >
-            Create Event
-          </button>
+
+          {/* Description */}
+          <div className="space-y-4">
+            <label htmlFor="description" className="block font-hand text-lg text-[#1a1a1a]/60">
+              Description
+            </label>
+            <textarea
+              id="description"
+              rows={6}
+              className="w-full bg-[var(--color-ink)]/5 rounded-xl p-6 text-lg font-serif text-[var(--color-ink)] placeholder:text-[var(--color-ink)]/20 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20 resize-none"
+              placeholder="Enter event description..."
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <div className="flex justify-end pt-8">
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              whileTap={{ scale: 0.95 }}
+              onMouseEnter={() => setCursorVariant("hover")}
+              onMouseLeave={() => setCursorVariant("default")}
+              className="px-8 py-4 bg-[var(--color-ink)] text-[var(--color-paper)] font-hand text-xl font-bold rounded-full shadow-[4px_4px_0px_var(--color-accent)] border-2 border-transparent hover:border-[var(--color-accent)] transition-all"
+            >
+              Create Event
+            </motion.button>
+          </div>
         </form>
-      </div>
-    </section>
+      </motion.div>
+    </div>
   );
 }
