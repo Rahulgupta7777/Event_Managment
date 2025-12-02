@@ -1,9 +1,21 @@
 import { motion } from "framer-motion";
 import { useAppStore } from "../../store/useAppStore";
 import { CheckSquare, Plus } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { tasksApi } from "../../lib/api";
 
 export function TaskView() {
   const { setCursorVariant } = useAppStore();
+  // TODO: Get actual event ID. For now, hardcoding or getting from store if available.
+  // Since we don't have a selected event context yet, we might need to fetch all tasks or just show a placeholder.
+  // Let's assume we want to show tasks for the first event for now, or just handle the empty state.
+  const eventId = "1"; // Placeholder
+
+  const { data: tasks, isLoading } = useQuery({
+    queryKey: ['tasks', eventId],
+    queryFn: () => tasksApi.getAll(eventId),
+    enabled: !!eventId
+  });
 
   return (
     <div className="min-h-screen w-full p-8 md:p-12 md:pl-32 max-w-5xl mx-auto">
@@ -41,24 +53,31 @@ export function TaskView() {
           </div>
 
           <div className="space-y-6 mt-4">
-            {[1, 2, 3].map((i) => (
-              <motion.div
-                key={i}
-                className="flex items-center gap-4 p-4 border-b-2 border-dashed border-[#1a1a1a]/10 group hover:bg-[#1a1a1a]/5 transition-colors"
-                whileHover={{ x: 10 }}
-              >
-                <div className="w-8 h-8 border-2 border-[var(--color-ink)] rounded-md flex items-center justify-center cursor-pointer hover:bg-[var(--color-accent)]/20 transition-colors">
-                  {i === 1 && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-4 h-4 bg-[#1a1a1a] rounded-sm" />}
-                </div>
-                <div className="flex-1">
-                  <h3 className={`font-serif text-xl ${i === 1 ? 'line-through opacity-50' : ''}`}>
-                    {i === 1 ? 'Venue Booking' : i === 2 ? 'Florist Coordination' : 'Budget Review'}
-                  </h3>
-                  <p className="font-hand text-sm text-[#1a1a1a]/40">Due {i === 1 ? 'Yesterday' : 'Tomorrow'}</p>
-                </div>
-                <div className="w-8 h-8 rounded-full bg-gray-200 border border-white shadow-sm" />
-              </motion.div>
-            ))}
+            {isLoading ? (
+              <div className="text-center font-hand text-[#1a1a1a]/60">Loading tasks...</div>
+            ) : tasks?.length === 0 ? (
+              <div className="text-center font-hand text-[#1a1a1a]/60">No tasks found.</div>
+            ) : (
+              tasks?.map((task: any, i: number) => (
+                <motion.div
+                  key={task.id}
+                  className="flex items-center gap-4 p-4 border-b-2 border-dashed border-[#1a1a1a]/10 group hover:bg-[#1a1a1a]/5 transition-colors"
+                  whileHover={{ x: 10 }}
+                >
+                  <div className="w-8 h-8 border-2 border-[var(--color-ink)] rounded-md flex items-center justify-center cursor-pointer hover:bg-[var(--color-accent)]/20 transition-colors">
+                    {task.status === 'done' && <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="w-4 h-4 bg-[#1a1a1a] rounded-sm" />}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className={`font-serif text-xl ${task.status === 'done' ? 'line-through opacity-50' : ''}`}>
+                      {task.title}
+                    </h3>
+                    <p className="font-hand text-sm text-[#1a1a1a]/40">
+                      {task.dueDate ? `Due ${new Date(task.dueDate).toLocaleDateString()}` : 'No due date'}
+                    </p>
+                  </div>
+                  <div className="w-8 h-8 rounded-full bg-gray-200 border border-white shadow-sm" />
+                </motion.div>
+              )))}
           </div>
         </div>
       </motion.div>

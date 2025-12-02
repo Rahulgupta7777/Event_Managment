@@ -15,8 +15,11 @@ interface CreateEventForm {
   location: string;
 }
 
+import { useNavigate } from "react-router-dom";
+
 export function CreateEventView() {
-  const { setCursorVariant, setActiveView } = useAppStore();
+  const { setCursorVariant } = useAppStore();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { register, handleSubmit, formState: { errors } } = useForm<CreateEventForm>();
@@ -26,7 +29,7 @@ export function CreateEventView() {
     onSuccess: () => {
       toast.success("Event created successfully!");
       queryClient.invalidateQueries({ queryKey: ['events'] });
-      setActiveView('dashboard');
+      navigate('/');
     },
     onError: (error: any) => {
       console.error(error);
